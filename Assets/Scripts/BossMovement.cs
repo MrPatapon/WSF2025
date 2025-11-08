@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 public class BossMovement : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class BossMovement : MonoBehaviour
     [Range(0f, 1f)] public float baseBackwardChance = 0.2f;
     public float secondTriggerBonus = 0.1f;
     public keyManager playerHoldRef;
+    [SerializeField] RawImage FailStateVape;
     
     private int currentIndex = 0;
     private bool isMoving = false;
@@ -36,6 +38,10 @@ public class BossMovement : MonoBehaviour
             }
 
             lastSecondTriggerState = secondTriggerActive;
+        }
+        if (Input.GetKey(KeyCode.Space)&& currentIndex == points.Length)
+        {
+            FailStateVape.gameObject.SetActive(true);
         }
     }
 
@@ -64,7 +70,7 @@ public class BossMovement : MonoBehaviour
         if (rand < moveForwardChance)
         {
             // do przodu
-            if (currentIndex < points.Length - 1)
+            if (currentIndex < points.Length)
                 nextIndex++;
             else
                 { //TODO: co jak jest na koñcu i chce iœæ dalej

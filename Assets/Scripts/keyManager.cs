@@ -15,6 +15,7 @@ public class keyManager : MonoBehaviour
     public Slider Slider2;
     public Image fillImage1;
     public Image fillImage2;
+    public RawImage FailStateNoStamina;
 
     [Header("Hold Timer Settings")]
     public Vector2 triggerTimeRange = new Vector2(4f, 5f);
@@ -28,6 +29,10 @@ public class keyManager : MonoBehaviour
     {
         UpdateHoldKeySlider(Slider1, fillImage1, KeyCode.Space, fillSpeed1, decaySpeed1, Color.green, orange, Color.red);
         HandleHoldTimer(KeyCode.Space);
+        if (Slider1.value == 0)
+        {
+            FailStateNoStamina.gameObject.SetActive(true);
+        }
         //UpdateHoldKeySlider(Slider2, fillImage2, KeyCode.P, -fillSpeed2, -decaySpeed2,Color.red,orange,Color.green);
     }
 
