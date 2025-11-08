@@ -12,12 +12,14 @@ public class Captcha : MonoBehaviour
     public float t = 0.0f;
     public List<KeyCode> free_letters;
     public QTManager qtm;
+    public OfficeTaskManager otm;
     int id = 0;
+
     void Start()
     {
         gen();
     }
-    void gen()
+    public void gen()
     {
         bool ok = false;
         while (!ok)
@@ -113,7 +115,9 @@ public class Captcha : MonoBehaviour
             if (s == label.text)
             {
                 s = "";
+                int score = s.Length;
                 gen();
+                otm.finish(score);
             }
         }
         if (((int)t) % 2 == 1)

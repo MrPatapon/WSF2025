@@ -7,11 +7,14 @@ public class Excel : MonoBehaviour
     public List<excell_line> data;
     public List<KeyCode> free_letters;
     public QTManager qtm;
+    public OfficeTaskManager otm;
 
     public List<String[]> l;
     public int line = 0;
     public float t = 0.0f;
     public String s = "";
+
+    public TMPro.TMP_Text info;
 
     void gen_q()
     {
@@ -59,12 +62,15 @@ public class Excel : MonoBehaviour
 
     }
 
-    void new_excel()
+    public void new_excel()
     {
         gen_q();
+        String deb = "";
         foreach(String[] p in l){
             Debug.Log(p[0] + " " + p[1]);
+            deb += p[0] + " " + p[1] + "\n";
         }
+        info.text = deb;
         line = 0;
         for (int i = 0; i < data.Count; i++)
         {
@@ -119,14 +125,22 @@ public class Excel : MonoBehaviour
         if (need_up)
         {
             data[line].cellB.text = s;
-            if (data[line].cellB.text == l[line][1])
+            if ((data[line].cellB.text == l[line][1])||(Input.GetKey(KeyCode.Minus)))
             {
                 line += 1;
                 s = "";
             }
             if (line == data.Count)
             {
+                
+
+                int score = 0;
+                foreach (String[] p in l)
+                {
+                    score += p[1].Length;
+                }
                 new_excel();
+                otm.finish(score);
             }
         }
 
