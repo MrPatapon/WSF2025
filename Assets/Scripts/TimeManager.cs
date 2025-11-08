@@ -1,22 +1,34 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
-using UnityEngine.UI;
 
 public class TimeManager : MonoBehaviour
 {
     [SerializeField] private TMP_Text timeText;
     [SerializeField] private int startHour = 7;
-    [SerializeField] private int totalHours = 8;
-    [SerializeField] private Vector2 hourDurationRange = new Vector2(1f, 2f);
-    [SerializeField] private RawImage WinState;
+    [SerializeField] private int totalHours = 9;
+    [SerializeField] private Vector2 hourDurationRange = new Vector2(60f, 90f); // seconds
 
-    private int currentHour;
-    void Start()
+    public int currentHour;
+    private Coroutine timeRoutine;
+
+    private DayManager dayManager;
+
+    private void Start()
     {
+        dayManager = GetComponent<DayManager>();
+        StartNewDay();
+    }
+
+    public void StartNewDay()
+    {
+        // stop previous coroutine if running
+        if (timeRoutine != null)
+            StopCoroutine(timeRoutine);
+
         currentHour = startHour;
         UpdateTimeText();
-        StartCoroutine(TimeRoutine());
+        timeRoutine = StartCoroutine(TimeRoutine());
     }
 
     private IEnumerator TimeRoutine()
@@ -29,12 +41,16 @@ public class TimeManager : MonoBehaviour
             currentHour++;
             UpdateTimeText();
         }
-        WinState.gameObject.SetActive(true);
+
+        // when the day ends
+        if (dayManager != null)
+            dayManager.FinishDay();
     }
+
     private void UpdateTimeText()
-    {        
+    {
         int displayHour = currentHour > 12 ? currentHour - 12 : currentHour;
-        string period = currentHour >= 12 ? "PM" : "AM";     
+        string period = currentHour >= 12 ? "PM" : "AM";
         timeText.text = $"{displayHour} {period}";
     }
 }

@@ -8,18 +8,27 @@ public class CameraHoverRotate : MonoBehaviour
     [SerializeField] private GameObject rightObject;
 
     [Header("Rotation Settings")]
-    [SerializeField] private float cameraAngle = 45f;       // Degrees to rotate
     [SerializeField] private float rotationDuration = 1f;   // Time to rotate
-    [SerializeField] private float defaultYAngle = 0f;      // Default camera rotation
+
+    [Header("Default Rotation")]
+    [SerializeField] private Vector3 defaultRotation = new Vector3(15f, 0f, 0f);
+
+    [Header("Hover Rotations")]
+    [SerializeField] private Vector3 leftRotation = new Vector3(0f, -45f, 0f);
+    [SerializeField] private Vector3 rightRotation = new Vector3(0f, 45f, 0f);
 
     private Coroutine rotationRoutine;
 
     private bool isOverLeft = false;
     private bool isOverRight = false;
 
+    void Start()
+    {
+        transform.rotation = Quaternion.Euler(defaultRotation); // Set starting rotation
+    }
+
     void Update()
     {
-        // Check if the mouse is over the left or right object
         isOverLeft = IsMouseOverObject(leftObject);
         isOverRight = IsMouseOverObject(rightObject);
 
@@ -44,25 +53,21 @@ public class CameraHoverRotate : MonoBehaviour
 
     private void UpdateRotation()
     {
-        int targetDirection = 0;
+        Vector3 targetRot;
 
-        if (isOverLeft && !isOverRight) targetDirection = -1;
-        else if (isOverRight && !isOverLeft) targetDirection = 1;
-        else targetDirection = 0; // Neither or both hovered ? return to default
-
-        float targetY = defaultYAngle + targetDirection * cameraAngle;
+        if (isOverLeft && !isOverRight) targetRot = leftRotation;
+        else if (isOverRight && !isOverLeft) targetRot = rightRotation;
+        else targetRot = defaultRotation;
 
         if (rotationRoutine != null) StopCoroutine(rotationRoutine);
-        rotationRoutine = StartCoroutine(RotateToAngle(targetY));
+        rotationRoutine = StartCoroutine(RotateToRotation(targetRot));
     }
 
-    private IEnumerator RotateToAngle(float targetY)
+    private IEnumerator RotateToRotation(Vector3 targetEuler)
     {
         float elapsed = 0f;
-        float startY = transform.eulerAngles.y;
-
-        Quaternion startRot = Quaternion.Euler(0f, startY, 0f);
-        Quaternion targetRot = Quaternion.Euler(0f, targetY, 0f);
+        Quaternion startRot = transform.rotation;
+        Quaternion targetRot = Quaternion.Euler(targetEuler);
 
         while (elapsed < rotationDuration)
         {
