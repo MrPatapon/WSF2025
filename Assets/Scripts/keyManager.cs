@@ -34,11 +34,11 @@ public class keyManager : MonoBehaviour
     public void onMistake()
     {
         Debug.Log("onMistake");
-        bossRelation -= 0.3f;
+        bossRelation -= 0.06f;
     }
     void Update()
     {
-        bossRelation = Mathf.Clamp01(bossRelation+Time.deltaTime*0.02f);
+        bossRelation = Mathf.Clamp01(bossRelation+Time.deltaTime*0.005f);
         Slider1.maxValue = bossRelation;
         Slider1P.GetComponent<RectTransform>().localScale = new Vector3(bossRelation, Slider1.GetComponent<RectTransform>().localScale.y,  1.0f);
         UpdateHoldKeySlider(Slider1, fillImage1, KeyCode.LeftShift, fillSpeed1, decaySpeed1, Color.red+Color.gray, orange + Color.gray, Color.green + Color.gray);

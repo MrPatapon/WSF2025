@@ -45,7 +45,7 @@ public class QT_element : MonoBehaviour
                 }
                 moving = true;
                 keyImage.rectTransform.anchoredPosition = keyImage.rectTransform.anchoredPosition +
-                    Vector2.down * 10.0f * Time.deltaTime;
+                    Vector2.down * 30.0f * Time.deltaTime;
                 if (keyImage.rectTransform.anchoredPosition.y < -200.0f)
                 {
                     keyImage.gameObject.active = false;
