@@ -67,7 +67,7 @@ public class Excel : MonoBehaviour
         gen_q();
         String deb = "";
         foreach(String[] p in l){
-            Debug.Log(p[0] + " " + p[1]);
+            //Debug.Log(p[0] + " " + p[1]);
             deb += p[0] + " " + p[1] + "\n";
         }
         info.text = deb;

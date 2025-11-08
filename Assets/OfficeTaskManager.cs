@@ -61,7 +61,7 @@ public class OfficeTaskManager : MonoBehaviour
         String full= captcha.label.text.ToUpper();
         for(int i=0; i<excel.l.Count; i++)
         {
-            full += excel.l[i][1];
+            full += excel.l[i][1].ToUpper();
         }
 
         //if (gtc == GameType.Capcha)
@@ -78,7 +78,7 @@ public class OfficeTaskManager : MonoBehaviour
                 free_letters.Add(c);
             }
         }
-
+        Debug.Log(free_letters);
 
         return free_letters;
     }
