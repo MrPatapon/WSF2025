@@ -1,24 +1,30 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
+using System.Collections;
 
 public class keyManager : MonoBehaviour
 {
     [Header("Settings")]
     public KeyCode Key1 = KeyCode.LeftShift;
-    public KeyCode Key2 = KeyCode.P;
     public float fillSpeed1;
     public float decaySpeed1;
-    public float fillSpeed2;
-    public float decaySpeed2;
 
     [Header("References")]
-    public UnityEngine.UI.Slider Slider1;
+    public Slider Slider1;
     public GameObject Slider1P;
-    public UnityEngine.UI.Slider Slider2;
-    public UnityEngine.UI.Image fillImage1;
-    public UnityEngine.UI.Image fillImage2;
+    public Image fillImage1;
     public RawImage FailStateNoStamina;
+
+    [Header("Vape References")]
+    [SerializeField] private Animation vapeAnimation;     // Legacy Animation component
+    [SerializeField] private string vapeClipName = "Vape"; // Name of the clip in Animation
+    [SerializeField] private GameObject smokeEffect;
+    [SerializeField] private float holdPauseTime = 0.4f;
+    [SerializeField] private float smoothPauseSpeed = 2f; // How fast it eases toward 0.4s
+
+    private bool isHolding = false;
+    private bool vapePlaying = false;
+    private Coroutine smoothPauseRoutine;
 
     [Header("Hold Timer Settings")]
     public Vector2 triggerTimeRange = new Vector2(4f, 5f);
@@ -28,68 +34,48 @@ public class keyManager : MonoBehaviour
     private bool secondTriggerDone = false;
 
     private Color orange = new Color(1f, 0.5f, 0f);
+    public float bossRelation = 1.0f;
 
-    public float bossRelation=1.0f;
-
-    public void onMistake()
-    {
-        Debug.Log("onMistake");
-        bossRelation -= 0.06f;
-    }
     void Update()
     {
-        bossRelation = Mathf.Clamp01(bossRelation+Time.deltaTime*0.005f);
+        bossRelation = Mathf.Clamp01(bossRelation + Time.deltaTime * 0.005f);
         Slider1.maxValue = bossRelation;
-        Slider1P.GetComponent<RectTransform>().localScale = new Vector3(bossRelation, Slider1.GetComponent<RectTransform>().localScale.y,  1.0f);
-        UpdateHoldKeySlider(Slider1, fillImage1, KeyCode.LeftShift, fillSpeed1, decaySpeed1, Color.red+Color.gray, orange + Color.gray, Color.green + Color.gray);
-        HandleHoldTimer(KeyCode.LeftShift);
+        Slider1P.GetComponent<RectTransform>().localScale = new Vector3(bossRelation, Slider1.GetComponent<RectTransform>().localScale.y, 1.0f);
+
+        UpdateHoldKeySlider(Slider1, fillImage1, Key1, fillSpeed1, decaySpeed1, Color.red + Color.gray, orange + Color.gray, Color.green + Color.gray);
+        HandleHoldTimer(Key1);
+        HandleVape(Key1);
+
         if (Slider1.value == 0)
-        {
             FailStateNoStamina.gameObject.SetActive(true);
+
+        // Trigger vape release when coughing
+        if (SecondTriggerReached && isHolding)
+        {
+            Debug.Log("?? Cough Trigger! Acting as release.");
+            HandleVapeRelease();
         }
-        //UpdateHoldKeySlider(Slider2, fillImage2, KeyCode.P, -fillSpeed2, -decaySpeed2,Color.red,orange,Color.green);
     }
 
-
-
-    public void UpdateHoldKeySlider(
-        UnityEngine.UI.Slider slider,
-        UnityEngine.UI.Image fillImage,
-        KeyCode keyToHold,
-        float fillSpeed,
-        float decaySpeed,
-        Color minColor,
-        Color midColor,
-        Color maxColor)
+    public void UpdateHoldKeySlider(Slider slider, Image fillImage, KeyCode keyToHold,
+        float fillSpeed, float decaySpeed, Color minColor, Color midColor, Color maxColor)
     {
         if (slider == null || fillImage == null) return;
 
-        // Update slider value based on key state
-        if (Input.GetKey(keyToHold))
-        {
+        if (Input.GetKey(keyToHold) && Mathf.Abs(Camera.main.transform.eulerAngles.y) < 1f)
             slider.value += fillSpeed * Time.deltaTime;
-        }
         else
-        {
             slider.value -= decaySpeed * Time.deltaTime;
-        }
 
         slider.value = Mathf.Clamp01(slider.value);
 
-
-        Color targetColor;
-
-        if (slider.value < 0.5f)
-        {
-            targetColor = Color.Lerp(minColor, midColor, slider.value * 2f);
-        }
-        else
-        {
-            targetColor = Color.Lerp(midColor, maxColor, (slider.value - 0.5f) * 2f);
-        }
+        Color targetColor = slider.value < 0.5f
+            ? Color.Lerp(minColor, midColor, slider.value * 2f)
+            : Color.Lerp(midColor, maxColor, (slider.value - 0.5f) * 2f);
 
         fillImage.color = Color.Lerp(fillImage.color, targetColor, 10f * Time.deltaTime);
     }
+
     private void HandleHoldTimer(KeyCode keyToHold)
     {
         if (Input.GetKey(keyToHold))
@@ -103,28 +89,102 @@ public class keyManager : MonoBehaviour
                 secondTriggerDone = false;
             }
 
-            // First trigger (after random 4–5s)
             if (!firstTriggerDone && holdTime >= nextTriggerTime)
-            {
-               // Debug.Log("?? UGH");
                 firstTriggerDone = true;
-            }
 
-            // Second trigger (1s after first)
             if (firstTriggerDone && !secondTriggerDone && holdTime >= nextTriggerTime + 0.5f)
             {
-               // Debug.Log("?? KASZEL");
                 secondTriggerDone = true;
+                Debug.Log("????? Cough Trigger!");
             }
         }
         else
         {
-            //Debug.Log("?? UFFF");
             holdTime = 0f;
             firstTriggerDone = false;
             secondTriggerDone = false;
         }
-
     }
+
+    private void HandleVape(KeyCode key)
+    {
+        if (vapeAnimation == null || !vapeAnimation[vapeClipName]) return;
+
+        if (Mathf.Abs(Camera.main.transform.eulerAngles.y) > 1f)
+            return;
+
+        AnimationState state = vapeAnimation[vapeClipName];
+
+        if (Input.GetKeyDown(key))
+        {
+            vapeAnimation.Play(vapeClipName);
+            vapePlaying = true;
+            isHolding = true;
+
+            if (smoothPauseRoutine != null)
+                StopCoroutine(smoothPauseRoutine);
+            smoothPauseRoutine = StartCoroutine(SmoothPauseAtTime(state, holdPauseTime));
+        }
+
+        if (Input.GetKeyUp(key))
+        {
+            HandleVapeRelease();
+        }
+    }
+
+    private IEnumerator SmoothPauseAtTime(AnimationState state, float pauseTime)
+    {
+        // Smoothly slow down and approach the pause time
+        while (isHolding && state.time < pauseTime)
+        {
+            state.speed = Mathf.Lerp(state.speed, 0f, Time.deltaTime * smoothPauseSpeed);
+            yield return null;
+
+            if (state.time >= pauseTime)
+            {
+                state.time = pauseTime;
+                state.speed = 0f;
+                vapeAnimation.Sample();
+                break;
+            }
+        }
+
+        // Ensure it stays paused while holding
+        while (isHolding)
+        {
+            state.speed = 0f;
+            state.time = pauseTime;
+            vapeAnimation.Sample();
+            yield return null;
+        }
+    }
+
+    private void HandleVapeRelease()
+    {
+        if (vapeAnimation == null || !vapeAnimation[vapeClipName]) return;
+
+        AnimationState state = vapeAnimation[vapeClipName];
+
+        if (smoothPauseRoutine != null)
+            StopCoroutine(smoothPauseRoutine);
+
+        isHolding = false;
+        vapePlaying = false;
+
+        // Resume animation smoothly from the paused frame
+        state.speed = 1f;
+        vapeAnimation.Play(vapeClipName);
+
+        StartCoroutine(SmokeBurst());
+    }
+
+    private IEnumerator SmokeBurst()
+    {
+
+        smokeEffect.GetComponent<ParticleSystem>().startLifetime = 0.4f;
+        yield return new WaitForSeconds(1f);
+        smokeEffect.GetComponent<ParticleSystem>().startLifetime = 0;
+    }
+
     public bool SecondTriggerReached => secondTriggerDone;
 }
