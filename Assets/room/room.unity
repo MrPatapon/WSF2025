@@ -1705,12 +1705,28 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8041560076520010019, guid: dc9d3d1dd7b1d504aa007db2f78f7fef, type: 3}
+      propertyPath: onFail.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8041560076520010019, guid: dc9d3d1dd7b1d504aa007db2f78f7fef, type: 3}
       propertyPath: onFail.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 834332493}
+      objectReference: {fileID: 834332494}
     - target: {fileID: 8041560076520010019, guid: dc9d3d1dd7b1d504aa007db2f78f7fef, type: 3}
       propertyPath: onFail.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8041560076520010019, guid: dc9d3d1dd7b1d504aa007db2f78f7fef, type: 3}
+      propertyPath: onFail.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: onMistake
+      objectReference: {fileID: 0}
+    - target: {fileID: 8041560076520010019, guid: dc9d3d1dd7b1d504aa007db2f78f7fef, type: 3}
+      propertyPath: onFail.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: keyManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8041560076520010019, guid: dc9d3d1dd7b1d504aa007db2f78f7fef, type: 3}
+      propertyPath: onFail.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2873,7 +2889,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "WYPIERDALAJ Z PRACY \n(nie mozna se zapalic)"
+  m_text: "WYPIERDALAJ Z PRACY \n(nawet sobie nie zapali\u0142em)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
