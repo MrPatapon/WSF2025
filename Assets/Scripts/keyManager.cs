@@ -14,6 +14,7 @@ public class keyManager : MonoBehaviour
 
     [Header("References")]
     public UnityEngine.UI.Slider Slider1;
+    public GameObject Slider1P;
     public UnityEngine.UI.Slider Slider2;
     public UnityEngine.UI.Image fillImage1;
     public UnityEngine.UI.Image fillImage2;
@@ -39,8 +40,8 @@ public class keyManager : MonoBehaviour
     {
         bossRelation = Mathf.Clamp01(bossRelation+Time.deltaTime*0.02f);
         Slider1.maxValue = bossRelation;
-        Slider1.GetComponent<RectTransform>().localScale = new Vector3(bossRelation, Slider1.GetComponent<RectTransform>().localScale.y,  1.0f);
-        UpdateHoldKeySlider(Slider1, fillImage1, KeyCode.LeftShift, fillSpeed1, decaySpeed1, Color.green, orange, Color.red);
+        Slider1P.GetComponent<RectTransform>().localScale = new Vector3(bossRelation, Slider1.GetComponent<RectTransform>().localScale.y,  1.0f);
+       //UpdateHoldKeySlider(Slider1, fillImage1, KeyCode.LeftShift, fillSpeed1, decaySpeed1, Color.green, orange, Color.red);
         HandleHoldTimer(KeyCode.LeftShift);
         if (Slider1.value == 0)
         {
