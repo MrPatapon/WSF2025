@@ -397,6 +397,96 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< Updated upstream
+=======
+--- !u!1 &361069987
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 361069988}
+  - component: {fileID: 361069990}
+  - component: {fileID: 361069989}
+  - component: {fileID: 361069991}
+  m_Layer: 5
+  m_Name: LeftTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &361069988
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 361069987}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1141915433}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -352.1678, y: -0.099991}
+  m_SizeDelta: {x: 96.2644, y: 449.8}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &361069989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 361069987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 10305, guid: 0000000000000000f000000000000000, type: 0}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!222 &361069990
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 361069987}
+  m_CullTransparentMesh: 1
+--- !u!114 &361069991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 361069987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e342d10678602434c8f2ebf78c2fe146, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: -1
+  manager: {fileID: 1869444716}
+>>>>>>> Stashed changes
 --- !u!1 &385035502
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,8 +515,13 @@ Transform:
   m_GameObject: {fileID: 385035502}
   serializedVersion: 2
   m_LocalRotation: {x: -0.042610165, y: 0.25257546, z: -0.012292135, w: 0.96656036}
+<<<<<<< Updated upstream
   m_LocalPosition: {x: 1.0657, y: 0.046, z: 0.655}
   m_LocalScale: {x: 1.0753272, y: 2.5225, z: 0.4217301}
+=======
+  m_LocalPosition: {x: 1.181, y: 0.072, z: 0.751}
+  m_LocalScale: {x: 1.194808, y: 2.5225, z: 0.4217301}
+>>>>>>> Stashed changes
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1869444714}
@@ -1458,8 +1553,13 @@ Transform:
   m_GameObject: {fileID: 695124963}
   serializedVersion: 2
   m_LocalRotation: {x: -0.01618745, y: 0.9205818, z: -0.041287906, w: 0.3880238}
+<<<<<<< Updated upstream
   m_LocalPosition: {x: -1.0601, y: 0.033, z: 0.507}
   m_LocalScale: {x: 1.194808, y: 2.5225, z: 0.37955707}
+=======
+  m_LocalPosition: {x: -1.181, y: 0.059, z: 0.603}
+  m_LocalScale: {x: 1.194808, y: 2.5225, z: 0.4217301}
+>>>>>>> Stashed changes
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1869444714}
@@ -1962,9 +2062,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeText: {fileID: 1200188177}
   startHour: 9
+<<<<<<< Updated upstream
   totalHours: 9
   hourDurationRange: {x: 60, y: 90}
   currentHour: 0
+=======
+  totalHours: 8
+  hourDurationRange: {x: 20, y: 40}
+  WinState: {fileID: 1635307270}
+>>>>>>> Stashed changes
 --- !u!4 &856571756
 Transform:
   m_ObjectHideFlags: 0
@@ -2497,7 +2603,12 @@ RectTransform:
   - {fileID: 1386253749}
   - {fileID: 618623886}
   - {fileID: 1635307269}
+<<<<<<< Updated upstream
   - {fileID: 1522026622}
+=======
+  - {fileID: 361069988}
+  - {fileID: 1732960243}
+>>>>>>> Stashed changes
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4314,6 +4425,93 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1726961804}
   m_CullTransparentMesh: 1
+--- !u!1 &1732960242
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1732960243}
+  - component: {fileID: 1732960245}
+  - component: {fileID: 1732960244}
+  - component: {fileID: 1732960246}
+  m_Layer: 5
+  m_Name: RightTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1732960243
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732960242}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1141915433}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 352.9, y: -0.099991}
+  m_SizeDelta: {x: 96.2644, y: 449.8}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1732960244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732960242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 10309, guid: 0000000000000000f000000000000000, type: 0}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!222 &1732960245
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732960242}
+  m_CullTransparentMesh: 1
+--- !u!114 &1732960246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732960242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e342d10678602434c8f2ebf78c2fe146, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: 1
+  manager: {fileID: 1869444716}
 --- !u!1 &1772757828
 GameObject:
   m_ObjectHideFlags: 0
@@ -4650,15 +4848,24 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1869444711}
   serializedVersion: 2
+<<<<<<< Updated upstream
   m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
   m_LocalPosition: {x: 0, y: 1.142, z: -8.95}
+=======
+  m_LocalRotation: {x: 0.043706577, y: 0, z: 0, w: 0.9990444}
+  m_LocalPosition: {x: -0.07, y: 1.142, z: -9.2}
+>>>>>>> Stashed changes
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 385035503}
   - {fileID: 695124964}
   m_Father: {fileID: 0}
+<<<<<<< Updated upstream
   m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
+=======
+  m_LocalEulerAnglesHint: {x: 5.01, y: 0, z: 0}
+>>>>>>> Stashed changes
 --- !u!114 &1869444715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4717,10 +4924,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftObject: {fileID: 695124963}
   rightObject: {fileID: 385035502}
+<<<<<<< Updated upstream
   rotationDuration: 0.02
   defaultRotation: {x: 15, y: 0, z: 0}
   leftRotation: {x: 0, y: -45, z: 0}
   rightRotation: {x: 0, y: 45, z: 0}
+=======
+  cameraAngle: 45
+  rotationDuration: 0.005
+  defaultYAngle: 0
+>>>>>>> Stashed changes
 --- !u!1 &1911409311
 GameObject:
   m_ObjectHideFlags: 0

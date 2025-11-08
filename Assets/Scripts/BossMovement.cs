@@ -25,6 +25,7 @@ public class BossMovement : MonoBehaviour
         currentForwardChance = baseForwardChance; // ? THIS IS CRUCIAL
         StartCoroutine(MovementLoop());
     }
+<<<<<<< Updated upstream
     private void Update()
     {
         if (playerHoldRef != null)
@@ -45,6 +46,9 @@ public class BossMovement : MonoBehaviour
             FailStateVape.gameObject.SetActive(true);
         }
     }
+=======
+
+>>>>>>> Stashed changes
     private IEnumerator MovementLoop()
     {
         while (true)
