@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
+
 public class keyManager : MonoBehaviour
 {
     [Header("Settings")]
@@ -11,10 +13,10 @@ public class keyManager : MonoBehaviour
     public float decaySpeed2;
 
     [Header("References")]
-    public Slider Slider1;
-    public Slider Slider2;
-    public Image fillImage1;
-    public Image fillImage2;
+    public UnityEngine.UI.Slider Slider1;
+    public UnityEngine.UI.Slider Slider2;
+    public UnityEngine.UI.Image fillImage1;
+    public UnityEngine.UI.Image fillImage2;
     public RawImage FailStateNoStamina;
 
     [Header("Hold Timer Settings")]
@@ -25,8 +27,19 @@ public class keyManager : MonoBehaviour
     private bool secondTriggerDone = false;
 
     private Color orange = new Color(1f, 0.5f, 0f);
+
+    public float bossRelation=1.0f;
+
+    public void onMistake()
+    {
+        Debug.Log("onMistake");
+        bossRelation -= 0.3f;
+    }
     void Update()
     {
+        bossRelation = Mathf.Clamp01(bossRelation+Time.deltaTime*0.01f);
+        Slider1.maxValue = bossRelation;
+        Slider1.GetComponent<RectTransform>().localScale = new Vector3(bossRelation, Slider1.GetComponent<RectTransform>().localScale.y,  1.0f);
         UpdateHoldKeySlider(Slider1, fillImage1, KeyCode.LeftShift, fillSpeed1, decaySpeed1, Color.green, orange, Color.red);
         HandleHoldTimer(KeyCode.LeftShift);
         if (Slider1.value == 0)
@@ -36,9 +49,11 @@ public class keyManager : MonoBehaviour
         //UpdateHoldKeySlider(Slider2, fillImage2, KeyCode.P, -fillSpeed2, -decaySpeed2,Color.red,orange,Color.green);
     }
 
+
+
     public void UpdateHoldKeySlider(
-        Slider slider,
-        Image fillImage,
+        UnityEngine.UI.Slider slider,
+        UnityEngine.UI.Image fillImage,
         KeyCode keyToHold,
         float fillSpeed,
         float decaySpeed,
@@ -90,20 +105,20 @@ public class keyManager : MonoBehaviour
             // First trigger (after random 4–5s)
             if (!firstTriggerDone && holdTime >= nextTriggerTime)
             {
-                Debug.Log("?? UGH");
+               // Debug.Log("?? UGH");
                 firstTriggerDone = true;
             }
 
             // Second trigger (1s after first)
             if (firstTriggerDone && !secondTriggerDone && holdTime >= nextTriggerTime + 0.5f)
             {
-                Debug.Log("?? KASZEL");
+               // Debug.Log("?? KASZEL");
                 secondTriggerDone = true;
             }
         }
         else
         {
-            Debug.Log("?? UFFF");
+            //Debug.Log("?? UFFF");
             holdTime = 0f;
             firstTriggerDone = false;
             secondTriggerDone = false;
