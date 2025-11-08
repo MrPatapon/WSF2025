@@ -39,7 +39,7 @@ public class BossMovement : MonoBehaviour
 
             lastSecondTriggerState = secondTriggerActive;
         }
-        if (Input.GetKey(KeyCode.Space)&& currentIndex == points.Length)
+        if (Input.GetKey(KeyCode.LeftShift)&& currentIndex == points.Length)
         {
             FailStateVape.gameObject.SetActive(true);
         }

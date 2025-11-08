@@ -3,7 +3,7 @@ using UnityEngine.UI;
 public class keyManager : MonoBehaviour
 {
     [Header("Settings")]
-    public KeyCode Key1 = KeyCode.Space;
+    public KeyCode Key1 = KeyCode.LeftShift;
     public KeyCode Key2 = KeyCode.P;
     public float fillSpeed1;
     public float decaySpeed1;
@@ -27,8 +27,8 @@ public class keyManager : MonoBehaviour
     private Color orange = new Color(1f, 0.5f, 0f);
     void Update()
     {
-        UpdateHoldKeySlider(Slider1, fillImage1, KeyCode.Space, fillSpeed1, decaySpeed1, Color.green, orange, Color.red);
-        HandleHoldTimer(KeyCode.Space);
+        UpdateHoldKeySlider(Slider1, fillImage1, KeyCode.LeftShift, fillSpeed1, decaySpeed1, Color.green, orange, Color.red);
+        HandleHoldTimer(KeyCode.LeftShift);
         if (Slider1.value == 0)
         {
             FailStateNoStamina.gameObject.SetActive(true);
