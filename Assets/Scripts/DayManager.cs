@@ -23,6 +23,7 @@ public class DayManager : MonoBehaviour
         else
             PAPA.gameObject.SetActive(true);
         Boss.transform.position = Boss.points[0].position;
+        StopCoroutine(Boss.MovementLoop());
         KeyManager.Slider1.value = 1;
         KeyManager.decaySpeed1 += 0.015f;
         StartCoroutine(BeginNewDay());
@@ -32,6 +33,8 @@ public class DayManager : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
         WinState.gameObject.SetActive(false);
+        StartCoroutine(Boss.MovementLoop());
+        Boss.moveInterval -= 0.5f;
         KeyManager.Slider1.value = 1;
         daycounter++;
         TimeManager.StartNewDay();

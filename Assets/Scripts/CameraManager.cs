@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class CameraHoverRotate : MonoBehaviour
+public class CameraManager: MonoBehaviour
 {
     [Header("3D Objects")]
     [SerializeField] private GameObject leftObject;
