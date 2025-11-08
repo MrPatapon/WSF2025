@@ -72,7 +72,7 @@ public class QTManager : MonoBehaviour
             {
                 if (!qts[id].keyImage.gameObject.active)
                 {
-                    Debug.Log("DDDDDDDDDDDdd");
+                    //Debug.Log("DDDDDDDDDDDdd");
                     KeyCode key = new_letter();
                     //letters_in_use.Add(key);
                     updateLetter();
