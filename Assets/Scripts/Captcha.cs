@@ -11,6 +11,7 @@ public class Captcha : MonoBehaviour
     string s="";
     public float t = 0.0f;
     public List<KeyCode> free_letters;
+    public QTManager qtm;
     int id = 0;
     void Start()
     {
@@ -18,9 +19,26 @@ public class Captcha : MonoBehaviour
     }
     void gen()
     {
-        List<String> a = new List<String> { "Ala ma kota", "Pies i kot", "Szef jest super" };
-        label.text = a[id];
-        id = (id + 1) % a.Count;
+        bool ok = false;
+        while (!ok)
+        {
+            List<String> a = new List<String> { "Ala ma kota", "Pies i kot", "Szef jest super" };
+            label.text = a[id];
+            id = (id + 1) % a.Count;
+            ok = true;
+            String upp_tex2 = label.text.ToUpper();
+            if (qtm != null)
+            {
+                foreach (KeyCode l in qtm.letters_in_use)
+                {
+                    if (upp_tex2.Contains(l.ToString())){
+                        ok = false;
+                    }
+                }
+            }
+            
+        }
+        
 
         String upp_tex = label.text.ToUpper();
         free_letters = new List<KeyCode>();
@@ -52,6 +70,13 @@ public class Captcha : MonoBehaviour
         for (int i = 0; i < 26; i++)
         {
             KeyCode key = KeyCode.A + i;
+            if (qtm != null)
+            {
+                if (qtm.letters_in_use.Contains(key))
+                {
+                    continue;
+                }
+            }
             if (Input.GetKeyDown(key))
             {
                 if (s.Length == 0)

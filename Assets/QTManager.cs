@@ -21,7 +21,7 @@ public class QTManager : MonoBehaviour
         KeyCode l = KeyCode.A;
         if (cap != null)
         {
-
+            l = cap.free_letters[Random.Range(0, cap.free_letters.Count)];
         }
         else
         {
