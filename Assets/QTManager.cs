@@ -68,14 +68,17 @@ public class QTManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab) || (autoT && Stime<0.0))
         {
             Stime = 3.0f;
-            if (!qts[id].keyImage.gameObject.active)
+            if ((Random.RandomRange(0, 10) == 0)||(letters_in_use.Count==0))
             {
-                Debug.Log("DDDDDDDDDDDdd");
-                KeyCode key = new_letter();
-                //letters_in_use.Add(key);
-                updateLetter();
-                qts[id].run(key, liveTime);
-                id = (id + 1) % qts.Count;
+                if (!qts[id].keyImage.gameObject.active)
+                {
+                    Debug.Log("DDDDDDDDDDDdd");
+                    KeyCode key = new_letter();
+                    //letters_in_use.Add(key);
+                    updateLetter();
+                    qts[id].run(key, liveTime);
+                    id = (id + 1) % qts.Count;
+                }
             }
         }
     }
