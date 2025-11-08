@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Captcha : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Captcha : MonoBehaviour
     public TMPro.TMP_Text user_label;
     string s="";
     public float t = 0.0f;
+    public List<KeyCode> free_letters;
     int id = 0;
     void Start()
     {
@@ -19,10 +21,32 @@ public class Captcha : MonoBehaviour
         List<String> a = new List<String> { "Ala ma kota", "Pies i kot", "Szef jest super" };
         label.text = a[id];
         id = (id + 1) % a.Count;
+
+        String upp_tex = label.text.ToUpper();
+        free_letters = new List<KeyCode>();
+
+        for (int i = 0; i < 26; i++)
+        {
+            KeyCode c = KeyCode.A + i;
+            if (!upp_tex.Contains((c.ToString()))){
+                free_letters.Add(c);
+            }
+        }
+        Debug.Log(free_letters);
     }
 
     void Update()
     {
+
+
+        if (Input.GetKeyDown(KeyCode.Escape) ){
+            SceneManager.LoadScene(0);
+        }
+
+
+
+
+
         t += Time.deltaTime;
         bool need_up = false;
         for (int i = 0; i < 26; i++)
@@ -45,8 +69,14 @@ public class Captcha : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            s += " ";
-            need_up = true; 
+            if (s.Length > 0)
+            {
+                if (s[s.Length-1]!=' ')
+                {
+                    s += " ";
+                    need_up = true;
+                }
+            }
         }
         if (Input.GetKeyDown(KeyCode.Backspace))
         {
