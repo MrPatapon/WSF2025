@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
@@ -7,7 +8,8 @@ public class QTManager : MonoBehaviour
 {
     public List<KeyCode> letters_in_use = new();
     public List<QT_element> qts;
-    public Captcha cap;
+    //public Captcha cap;
+    public OfficeTaskManager ofm;
     public float liveTime = 6.0f;
 
     public UnityEvent onPressed;
@@ -19,9 +21,11 @@ public class QTManager : MonoBehaviour
     KeyCode new_letter()
     {
         KeyCode l = KeyCode.A;
-        if (cap != null)
+        if (ofm != null)
         {
-            l = cap.free_letters[Random.Range(0, cap.free_letters.Count)];
+            var free_letters = ofm.free_letters();
+            Assert.IsTrue(free_letters.Count>0);
+            l = free_letters[Random.Range(0, free_letters.Count)];
         }
         else
         {
