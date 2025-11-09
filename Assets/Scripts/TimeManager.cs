@@ -12,6 +12,7 @@ public class TimeManager : MonoBehaviour
     public int currentHour;
     private Coroutine timeRoutine;
     private DayManager dayManager;
+    public OfficeTaskManager officeTaskManager;
 
     private bool timePaused = true;
 
@@ -30,6 +31,7 @@ public class TimeManager : MonoBehaviour
         currentHour = startHour;
         UpdateTimeText();
         timePaused = true; // paused until tutorial ends
+        officeTaskManager.StartDay(dayManager.daycounter-1);
     }
 
     public void ResumeTime()
@@ -73,7 +75,11 @@ public class TimeManager : MonoBehaviour
         }
 
         if (!timePaused && dayManager != null)
+        {
             dayManager.FinishDay();
+            officeTaskManager.EndDay();
+        }
+            
     }
 
     private void UpdateTimeText()
