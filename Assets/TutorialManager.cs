@@ -33,6 +33,7 @@ public class TutorialManager : MonoBehaviour
 
     public void BeginTutorialDay(int day)
     {
+        timeManager.officeTaskManager.turn_off();
         currentDay = day;
         tutorialCanvas.SetActive(true);
 

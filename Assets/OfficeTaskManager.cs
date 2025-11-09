@@ -36,6 +36,11 @@ public class OfficeTaskManager : MonoBehaviour
         captcha.gen();
         excel.new_excel();
     }
+    public void turn_off()
+    {
+        excel.gameObject.active = false;
+        captcha.gameObject.active = false;
+    }
     public void onSlow()
     {
         keyManager.bossRelation *= 0.5f;
