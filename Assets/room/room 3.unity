@@ -6042,7 +6042,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &408755489
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6799,7 +6799,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'May the odds be in your favor,
 
-    
+
 
     Xoxo
 
@@ -8703,14 +8703,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 0}
+  m_Texture: {fileID: 2800000, guid: 408080b1281dd9c4da0754c05cb5dc37, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -10970,10 +10970,10 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Dear Newbie,
 
-    
 
-    Seems like management wants to talk to you,
-    they will call.
+
+    Seems like management wants to talk to you, they will
+    call.
 
 '
   m_isRightToLeft: 0
@@ -12494,7 +12494,7 @@ MonoBehaviour:
   timeText: {fileID: 1200188177}
   startHour: 9
   totalHours: 9
-  hourDurationRange: {x: 4, y: 6}
+  hourDurationRange: {x: 15, y: 20}
   currentHour: 0
   officeTaskManager: {fileID: 1857775137}
 --- !u!4 &856571756
@@ -13192,7 +13192,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'And keep eye contact with the lady. DO. NOT. LOOK. AWAY.
 
-    
+
 
 '
   m_isRightToLeft: 0
@@ -17177,7 +17177,7 @@ MonoBehaviour:
   m_text: 'Complete the Niexcel table with the correct information. For where to
     find them, idk look around you.
 
-    
+
 
 '
   m_isRightToLeft: 0
@@ -24982,14 +24982,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 0}
+  m_Texture: {fileID: 2800000, guid: bca3e1138830255448d63828fb177ed7, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
