@@ -12494,7 +12494,7 @@ MonoBehaviour:
   timeText: {fileID: 1200188177}
   startHour: 9
   totalHours: 9
-  hourDurationRange: {x: 2, y: 3}
+  hourDurationRange: {x: 4, y: 6}
   currentHour: 0
   officeTaskManager: {fileID: 1857775137}
 --- !u!4 &856571756
@@ -24243,6 +24243,10 @@ PrefabInstance:
       value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5467241084410136309, guid: 90571dc5edae62342a71d87f109f3c86, type: 3}
+      propertyPath: otm
+      value: 
+      objectReference: {fileID: 1857775137}
+    - target: {fileID: 5467241084410136309, guid: 90571dc5edae62342a71d87f109f3c86, type: 3}
       propertyPath: qtm
       value: 
       objectReference: {fileID: 1193903573}
@@ -32341,16 +32345,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gto:
   - gto: 0000000000000000
+    maxTime: 30
+    qt: 1
   - gto: 0200000002000000
+    maxTime: 60
+    qt: 0
   - gto: 0100000001000000
+    maxTime: 30
+    qt: 1
   - gto: 0100000002000000
+    maxTime: 60
+    qt: 1
   - gto: 010000000200000001000000
+    maxTime: 60
+    qt: 1
   excel: {fileID: 107490226}
   captcha: {fileID: 1382980613}
   id: 0
   day_id: 0
   dayScore: 0
   qtm: {fileID: 1193903573}
+  keyManager: {fileID: 834332494}
   gtc: 0
 --- !u!1 &1862437374
 GameObject:

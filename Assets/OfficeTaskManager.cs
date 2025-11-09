@@ -12,6 +12,8 @@ public enum GameType {
 public class DayGames
 {
     public List<GameType> gto;
+    public float maxTime = 30.0f;
+    public bool qt = true;
 }
 
 
@@ -24,7 +26,7 @@ public class OfficeTaskManager : MonoBehaviour
     public int day_id = 0;
     public int dayScore=0;
     public QTManager qtm;
-
+    public keyManager keyManager;
 
     public GameType gtc;
     void Start()
@@ -34,12 +36,20 @@ public class OfficeTaskManager : MonoBehaviour
         captcha.gen();
         excel.new_excel();
     }
-
+    public void onSlow()
+    {
+        keyManager.bossRelation *= 0.5f;
+        Debug.Log("YOU!!!!!!!!!!!!!!!!");
+    }
     public void StartDay(int day04)
     {
         Debug.Log("STARTING >>>"+day04.ToString());
         day_id = day04;
         gtc = gto[day_id].gto[0];
+
+        excel.MtaskTime = gto[day_id].maxTime;
+        excel.taskTime = gto[day_id].maxTime;
+        excel.live = true;
 
         if ( gtc == GameType.Capcha )
         {
@@ -56,7 +66,7 @@ public class OfficeTaskManager : MonoBehaviour
             excel.gameObject.active = false;
             captcha.gameObject.active = false;
         }
-        qtm.IsOn=true;
+        qtm.IsOn= gto[day_id].qt;
     }
 
     public int EndDay()
@@ -78,11 +88,17 @@ public class OfficeTaskManager : MonoBehaviour
         {
             captcha.gameObject.active = true;
             excel.gameObject.active = false;
+            captcha.MtaskTime = gto[day_id].maxTime;
+            captcha.taskTime = gto[day_id].maxTime;
+            captcha.live = true;
         }
         if (gtc == GameType.Excel)
         {
             excel.gameObject.active = true;
             captcha.gameObject.active = false;
+            excel.MtaskTime = gto[day_id].maxTime;
+            excel.taskTime = gto[day_id].maxTime;
+            excel.live = true;
         }
     }
 

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine; 
+using UnityEngine;
+using UnityEngine.UI;
 
 public class Excel : MonoBehaviour
 {
@@ -16,7 +17,11 @@ public class Excel : MonoBehaviour
     public int exc_id=0;
     public GameObject deco_obj;
     public TMPro.TMP_Text info;
+    public float MtaskTime = 10.0f;
+    public float taskTime = 10.0f;
+    public Slider timeSlider;
 
+    public bool live = false;
     void gen_q()
     {
         List<String[]> namesAll = new List<String[]>{
@@ -93,10 +98,17 @@ public class Excel : MonoBehaviour
     {
         new_excel();
     }
-
+     
     void Update()
     {
         t += Time.deltaTime;
+        taskTime -= Time.deltaTime;
+        timeSlider.value = taskTime / MtaskTime;
+        if ( (taskTime < 0.0f) && live)
+        {
+            live = false;
+            otm.onSlow();
+        }
         bool need_up = false;
         for (int i = 0; i < 26; i++)
         {
