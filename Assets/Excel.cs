@@ -13,7 +13,8 @@ public class Excel : MonoBehaviour
     public int line = 0;
     public float t = 0.0f;
     public String s = "";
-
+    public int exc_id=0;
+    public GameObject deco_obj;
     public TMPro.TMP_Text info;
 
     void gen_q()
@@ -64,6 +65,7 @@ public class Excel : MonoBehaviour
 
     public void new_excel()
     {
+        exc_id += 1;
         gen_q();
         String deb = "";
         foreach(String[] p in l){
@@ -76,6 +78,14 @@ public class Excel : MonoBehaviour
         {
             data[i].cellA.text = l[i][0];
             data[i].cellB.text = "";//l[i][1];
+        }
+        if (exc_id % 2 == 0)
+        {
+            deco_obj.active = true;
+        }
+        else
+        {
+            deco_obj.active = false;
         }
     }
 
