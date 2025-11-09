@@ -27,6 +27,11 @@ public class keyManager : MonoBehaviour
     public bool isTutFinished = false;
     private bool vapePlaying = false;
     private Coroutine smoothPauseRoutine;
+    bool isAudioPlayed = false;
+    bool isAudioPlayed1 = false;
+    bool isAudioPlayed2 = false;
+    bool isAudioPlayed3 = false;
+    bool isAudioPlayed4 = false;
 
     [Header("Hold Timer Settings")]
     public Vector2 triggerTimeRange = new Vector2(4f, 5f);
@@ -104,14 +109,30 @@ public class keyManager : MonoBehaviour
             }
 
             if (!firstTriggerDone && holdTime >= nextTriggerTime)
-                firstTriggerDone = true;
-                AudioManager.instance.PlayOneShot(FmodEvents.instance.SmallCough, transform.position);
+            {
+                firstTriggerDone = true;    
+                if(!isAudioPlayed)
+                {
+                    AudioManager.instance.PlayOneShot(FmodEvents.instance.SmallCough, transform.position);
+                    isAudioPlayed = true;
+                }
+                
+                
+            }
+               
 
             if (firstTriggerDone && !secondTriggerDone && holdTime >= nextTriggerTime + 0.5f)
             {
                 secondTriggerDone = true;
                 Debug.Log("????? Cough Trigger!");
-                AudioManager.instance.PlayOneShot(FmodEvents.instance.LargeCough, transform.position);
+                if(!isAudioPlayed1)
+                {
+                    AudioManager.instance.PlayOneShot(FmodEvents.instance.BossAlert, transform.position);
+                    Boss.baseForwardChance += 0.05f;
+                    AudioManager.instance.PlayOneShot(FmodEvents.instance.LargeCough, transform.position);
+                    isAudioPlayed1 = true;
+                }
+                
             }
         }
         else
@@ -134,7 +155,12 @@ public class keyManager : MonoBehaviour
         if (Input.GetKeyDown(key))
         {
             vapeAnimation.Play(vapeClipName);
-            AudioManager.instance.PlayOneShot(FmodEvents.instance.Inhale, transform.position);
+            if(!isAudioPlayed3)
+            {
+                AudioManager.instance.PlayOneShot(FmodEvents.instance.Inhale, transform.position);
+                isAudioPlayed3 = true;
+            }
+            
             vapePlaying = true;
             isHolding = true;
 
@@ -190,16 +216,19 @@ public class keyManager : MonoBehaviour
 
         // Resume animation smoothly from the paused frame
         state.speed = 1f;
-        vapeAnimation.Play(vapeClipName);
-
-        StartCoroutine(SmokeBurst());
-        AudioManager.instance.PlayOneShot(FmodEvents.instance.Exhale, transform.position);
+        vapeAnimation.Play(vapeClipName);        
+            
+        isAudioPlayed = false;
+        isAudioPlayed1 = false;
+        isAudioPlayed2 = false;
+        isAudioPlayed3 = false;
     }
 
     private IEnumerator SmokeBurst()
     {
 
         smokeEffect.GetComponent<ParticleSystem>().startLifetime = 0.4f;
+        AudioManager.instance.PlayOneShot(FmodEvents.instance.Exhale, transform.position);
         yield return new WaitForSeconds(1f);
         smokeEffect.GetComponent<ParticleSystem>().startLifetime = 0;
     }
