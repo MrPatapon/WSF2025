@@ -8,15 +8,22 @@ public enum GameType {
     Excel,
 
 };
+[Serializable]
+public class DayGames
+{
+    public List<GameType> gto;
+}
 
 
 public class OfficeTaskManager : MonoBehaviour
 {
-    public List<GameType> gt;
+    public List<DayGames> gto;
     public Excel excel;
     public Captcha captcha;
     public int id=0;
+    public int day_id = 0;
     public int dayScore=0;
+    public QTManager qtm;
 
 
     public GameType gtc;
@@ -24,26 +31,46 @@ public class OfficeTaskManager : MonoBehaviour
     {
         excel.otm = this;
         captcha.otm = this;
-        gtc = gt[0];
         captcha.gen();
         excel.new_excel();
+    }
+
+    public void StartDay(int day04)
+    {
+        day_id = day04;
+        gtc = gto[day_id].gto[0];
+
         if ( gtc == GameType.Capcha )
         {
             captcha.gameObject.active = true;
-            
+            captcha.gameObject.active = false;
         }
         if (gtc == GameType.Excel)
         {
             excel.gameObject.active = true;
+            captcha.gameObject.active = false;
         }
+        if (gtc == GameType.None)
+        {
+            excel.gameObject.active = false;
+            captcha.gameObject.active = false;
+        }
+        qtm.IsOn=true;
+    }
+
+    public int EndDay()
+    {
+        int res = dayScore;
+        qtm.IsOn = false;
+        return dayScore;
     }
 
     public void finish(int score)
     {
         dayScore += score;
         Debug.Log("you have "+ dayScore.ToString());
-        id = (id + 1) % gt.Count;
-        gtc = gt[id];
+        id = (id + 1) % gto[day_id].gto.Count;
+        gtc = gto[day_id].gto[id];
         if (gtc == GameType.Capcha)
         {
             captcha.gameObject.active = true;

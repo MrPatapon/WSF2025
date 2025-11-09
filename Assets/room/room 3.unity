@@ -11332,6 +11332,7 @@ MonoBehaviour:
   totalHours: 9
   hourDurationRange: {x: 2, y: 3}
   currentHour: 0
+  officeTaskManager: {fileID: 0}
 --- !u!4 &856571756
 Transform:
   m_ObjectHideFlags: 0
@@ -29813,7 +29814,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1857775136
 Transform:
   m_ObjectHideFlags: 0
@@ -29841,11 +29842,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 276e32f8987c36846a1e25a2e261a75e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gt: 020000000100000001000000
+  gto:
+  - gto: 0000000000000000
+  - gto: 0100000001000000
+  - gto: 0200000002000000
+  - gto: 0100000002000000
+  - gto: 010000000200000001000000
   excel: {fileID: 107490226}
   captcha: {fileID: 1382980613}
   id: 0
+  day_id: 0
   dayScore: 0
+  qtm: {fileID: 1193903573}
   gtc: 0
 --- !u!1 &1862437374
 GameObject:
