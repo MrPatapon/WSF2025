@@ -41,8 +41,7 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        InitializeAmbience(FmodEvents.instance.Ambience);
-        InitializeMusic(FmodEvents.instance.Music);
+       
 
         if (instance != null)
         {
@@ -60,7 +59,9 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         InitializeAmbience(FmodEvents.instance.Ambience);
-        InitializeMusic(FmodEvents.instance.Music);
+        //InitializeMusic(FmodEvents.instance.Music);
+        InitializeAmbience(FmodEvents.instance.Ambience);
+        //InitializeMusic(FmodEvents.instance.Music);
 
 
         musicInstances.Add(musicMysteriousEventInstance);
