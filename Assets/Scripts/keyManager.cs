@@ -48,7 +48,11 @@ public class keyManager : MonoBehaviour
         HandleVape(Key1);
 
         if (Slider1.value == 0)
+        {
             FailStateNoStamina.gameObject.SetActive(true);
+            AudioManager.instance.PlayOneShot(FmodEvents.instance.BossTriggered, transform.position);
+        }
+           
 
         // Trigger vape release when coughing
         if (SecondTriggerReached && isHolding)
@@ -60,6 +64,8 @@ public class keyManager : MonoBehaviour
 
     public void onMistake()
     {
+        AudioManager.instance.PlayOneShot(FmodEvents.instance.Fail, transform.position);
+        AudioManager.instance.PlayOneShot(FmodEvents.instance.BossAlert, transform.position);
         Debug.Log("onMistake");
         bossRelation -= 0.06f;
     }
@@ -125,6 +131,7 @@ public class keyManager : MonoBehaviour
         if (Input.GetKeyDown(key))
         {
             vapeAnimation.Play(vapeClipName);
+            AudioManager.instance.PlayOneShot(FmodEvents.instance.Inhale, transform.position);
             vapePlaying = true;
             isHolding = true;
 
@@ -183,6 +190,7 @@ public class keyManager : MonoBehaviour
         vapeAnimation.Play(vapeClipName);
 
         StartCoroutine(SmokeBurst());
+        AudioManager.instance.PlayOneShot(FmodEvents.instance.Exhale, transform.position);
     }
 
     private IEnumerator SmokeBurst()

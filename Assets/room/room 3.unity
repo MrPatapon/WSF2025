@@ -6442,9 +6442,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 427706927}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e563b3db9adb2d4fb7d7ce125d15e57, type: 3}
+  m_Script: {fileID: 11500000, guid: 8fbc82c5bed53824ca6136a08fc2f738, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  masterVolume: 0.8
+  footstepsVolume: 0.5
 --- !u!4 &427706929
 Transform:
   m_ObjectHideFlags: 0
@@ -6454,7 +6456,7 @@ Transform:
   m_GameObject: {fileID: 427706927}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.5781033, y: 5.6334195, z: 111.12296}
+  m_LocalPosition: {x: 0, y: 1.18, z: -8.761}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10217,11 +10219,23 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8041560076520010019, guid: dc9d3d1dd7b1d504aa007db2f78f7fef, type: 3}
+      propertyPath: onFail.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8041560076520010019, guid: dc9d3d1dd7b1d504aa007db2f78f7fef, type: 3}
       propertyPath: onFail.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 834332494}
     - target: {fileID: 8041560076520010019, guid: dc9d3d1dd7b1d504aa007db2f78f7fef, type: 3}
+      propertyPath: onFail.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 427706927}
+    - target: {fileID: 8041560076520010019, guid: dc9d3d1dd7b1d504aa007db2f78f7fef, type: 3}
       propertyPath: onFail.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8041560076520010019, guid: dc9d3d1dd7b1d504aa007db2f78f7fef, type: 3}
+      propertyPath: onFail.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8041560076520010019, guid: dc9d3d1dd7b1d504aa007db2f78f7fef, type: 3}
@@ -10229,11 +10243,23 @@ PrefabInstance:
       value: onMistake
       objectReference: {fileID: 0}
     - target: {fileID: 8041560076520010019, guid: dc9d3d1dd7b1d504aa007db2f78f7fef, type: 3}
+      propertyPath: onFail.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: onMistake
+      objectReference: {fileID: 0}
+    - target: {fileID: 8041560076520010019, guid: dc9d3d1dd7b1d504aa007db2f78f7fef, type: 3}
       propertyPath: onFail.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: keyManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8041560076520010019, guid: dc9d3d1dd7b1d504aa007db2f78f7fef, type: 3}
+      propertyPath: onFail.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: keyManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8041560076520010019, guid: dc9d3d1dd7b1d504aa007db2f78f7fef, type: 3}
       propertyPath: onFail.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8041560076520010019, guid: dc9d3d1dd7b1d504aa007db2f78f7fef, type: 3}
+      propertyPath: onFail.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -12197,7 +12223,7 @@ Transform:
   m_GameObject: {fileID: 834332493}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.18, z: -8.761}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -30492,7 +30518,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1754849774}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 069540aada107f9488fa19a56662b548, type: 3}
+  m_Script: {fileID: 11500000, guid: 33e6d08df4499d0449d6c2b252d25e5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Ambience:
@@ -30509,48 +30535,132 @@ MonoBehaviour:
       Data3: 855133845
       Data4: 1532949422
     Path: event:/MUSIC/mainmenu
-  <Kroki>k__BackingField:
-    Guid:
-      Data1: 926316926
-      Data2: 1093184168
-      Data3: 1023884183
-      Data4: 1149047436
-    Path: event:/SFX/SoundCues/Boss/sfx_boss_footsteps_3D
-  <Wkurwienie>k__BackingField:
-    Guid:
-      Data1: 1841976323
-      Data2: 1213952749
-      Data3: -376229760
-      Data4: -496049074
-    Path: event:/SFX/SoundCues/Boss/sfx_boss_noticed
-  <Kaszel1>k__BackingField:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  <Kaszel2>k__BackingField:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  <suckin>k__BackingField:
+  <Inhale>k__BackingField:
     Guid:
       Data1: 1349444428
       Data2: 1176090248
       Data3: 27685275
       Data4: -526465730
     Path: event:/SFX/SoundCues/Vape/sfx_vape_inhale
-  <suckout>k__BackingField:
+  <Exhale>k__BackingField:
     Guid:
       Data1: 1355340046
       Data2: 1197206424
       Data3: 975556006
       Data4: -230803177
     Path: event:/SFX/SoundCues/Vape/sfx_vape_exhale
+  <SmallCough>k__BackingField:
+    Guid:
+      Data1: -1937696042
+      Data2: 1198176324
+      Data3: 19531666
+      Data4: 223110
+    Path: event:/SFX/player/sfx_cough_small
+  <MediumCough>k__BackingField:
+    Guid:
+      Data1: 54281338
+      Data2: 1211044253
+      Data3: -448629314
+      Data4: -455074880
+    Path: event:/SFX/player/sfx_cough_medium
+  <LargeCough>k__BackingField:
+    Guid:
+      Data1: 911752741
+      Data2: 1215894555
+      Data3: -872790854
+      Data4: -1276711898
+    Path: event:/SFX/player/sfx_cough_large
+  <KeyboardTyping>k__BackingField:
+    Guid:
+      Data1: 462383076
+      Data2: 1199514670
+      Data3: -2021371479
+      Data4: 1003263406
+    Path: event:/SFX/SoundCues/mini-games/sfx_keyboard_typing
+  <KeyboardButton>k__BackingField:
+    Guid:
+      Data1: 992887710
+      Data2: 1333267766
+      Data3: 1806326431
+      Data4: -1376389145
+    Path: event:/SFX/SoundCues/mini-games/sfx_keyboard_button
+  <SceneSound>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <BossAlert>k__BackingField:
+    Guid:
+      Data1: 810215672
+      Data2: 1303584260
+      Data3: 1605635771
+      Data4: 1368002297
+    Path: event:/SFX/SoundCues/Boss/sfx_boss_alert
+  <BossTriggered>k__BackingField:
+    Guid:
+      Data1: 1841976323
+      Data2: 1213952749
+      Data3: -376229760
+      Data4: -496049074
+    Path: event:/SFX/SoundCues/Boss/sfx_boss_noticed
+  <BossRun>k__BackingField:
+    Guid:
+      Data1: 1874112318
+      Data2: 1231681213
+      Data3: 1304205224
+      Data4: 1901229179
+    Path: event:/SFX/SoundCues/Boss/sfx_boss_run
+  <Success>k__BackingField:
+    Guid:
+      Data1: 1812031950
+      Data2: 1149743570
+      Data3: 1710643353
+      Data4: -810384993
+    Path: event:/SFX/SoundCues/sfx_win
+  <Fail>k__BackingField:
+    Guid:
+      Data1: -1625981741
+      Data2: 1144824780
+      Data3: 1230539904
+      Data4: 17454165
+    Path: event:/SFX/SoundCues/sfx_fail
+  <PlayerScream>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <EndDayPhone>k__BackingField:
+    Guid:
+      Data1: 1077664648
+      Data2: 1184056491
+      Data3: 1915768215
+      Data4: -1498386754
+    Path: event:/SFX/Sfx_phone_ring
+  <CityAmbientBreak>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <Click>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <Hover>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!1 &1760250438
 GameObject:
   m_ObjectHideFlags: 0
@@ -32849,6 +32959,7 @@ GameObject:
   - component: {fileID: 1869444715}
   - component: {fileID: 1869444716}
   - component: {fileID: 1869444717}
+  - component: {fileID: 1869444718}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -33009,6 +33120,20 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   priority: -1
+--- !u!114 &1869444718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869444711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 0}
 --- !u!1 &1873190095
 GameObject:
   m_ObjectHideFlags: 0

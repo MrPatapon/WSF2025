@@ -55,6 +55,7 @@ public class BossMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift) && (currentIndex == points.Length || currentIndex == points.Length - 1))
         {
             FailStateVape.gameObject.SetActive(true);
+            AudioManager.instance.PlayOneShot(FmodEvents.instance.BossTriggered, transform.position);
         }
     }
 
@@ -89,6 +90,7 @@ public class BossMovement : MonoBehaviour
         {
             Vector3 targetPos = points[nextIndex].position;
             transform.position = targetPos;
+            AudioManager.instance.PlayOneShot(FmodEvents.instance.BossRun,transform.position);
 
             // Rotate to face next point
             Vector3 direction = (targetPos - transform.position).normalized;

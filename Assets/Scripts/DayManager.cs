@@ -28,7 +28,12 @@ public class DayManager : MonoBehaviour
     public void FinishDay()
     {
         if (daycounter < 5)
+        {
             WinState.gameObject.SetActive(true);
+            AudioManager.instance.PlayOneShot(FmodEvents.instance.Success, transform.position);
+            AudioManager.instance.PlayOneShot(FmodEvents.instance.EndDayPhone, transform.position);
+        }
+            
         else
             PAPA.gameObject.SetActive(true);
 
