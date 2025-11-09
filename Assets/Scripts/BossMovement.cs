@@ -98,6 +98,7 @@ public class BossMovement : MonoBehaviour
             }
 
             currentIndex = nextIndex;
+            transform.rotation = Quaternion.Euler(0f, transform.position.x < 0 ? 90f : -90f, 0f);
             Debug.Log($"Teleported to point {currentIndex}");
         }
     }

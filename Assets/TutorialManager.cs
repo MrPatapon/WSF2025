@@ -41,8 +41,17 @@ public class TutorialManager : MonoBehaviour
         dayManager.Boss.canMove = false;
         keyManager.isTutFinished = false;
 
+        // --- NEW: Disable all bubbles from any previous day ---
+        foreach (var bubble in day1Bubbles) if (bubble) bubble.SetActive(false);
+        foreach (var bubble in day2Bubbles) if (bubble) bubble.SetActive(false);
+        foreach (var bubble in day3Bubbles) if (bubble) bubble.SetActive(false);
+        foreach (var bubble in day4Bubbles) if (bubble) bubble.SetActive(false);
+        foreach (var bubble in day5Bubbles) if (bubble) bubble.SetActive(false);
+
+        // Clear current message list
         messageBubbles.Clear();
 
+        // Add current day’s messages
         switch (day)
         {
             case 1: messageBubbles.AddRange(day1Bubbles); break;
