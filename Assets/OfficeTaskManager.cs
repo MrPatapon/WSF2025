@@ -59,7 +59,7 @@ public class OfficeTaskManager : MonoBehaviour
         if ( gtc == GameType.Capcha )
         {
             captcha.gameObject.active = true;
-            captcha.gameObject.active = false;
+            excel.gameObject.active = false;
         }
         if (gtc == GameType.Excel)
         {
