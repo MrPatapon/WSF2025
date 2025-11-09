@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Captcha : MonoBehaviour
 {
@@ -14,7 +15,11 @@ public class Captcha : MonoBehaviour
     public QTManager qtm;
     public OfficeTaskManager otm;
     int id = 0;
+    public float MtaskTime = 10.0f;
+    public float taskTime = 10.0f;
+    public Slider timeSlider;
 
+    public bool live = false;
     void Start()
     {
         gen();
@@ -54,7 +59,7 @@ public class Captcha : MonoBehaviour
         }
         Debug.Log(free_letters);
     }
-
+    
     void Update()
     {
 
@@ -63,7 +68,13 @@ public class Captcha : MonoBehaviour
             SceneManager.LoadScene(0);
         }
 
-
+        taskTime -= Time.deltaTime;
+        timeSlider.value = taskTime / MtaskTime;
+        if ((taskTime < 0.0f) && live)
+        {
+            live = false;
+            otm.onSlow();
+        }
 
 
 
