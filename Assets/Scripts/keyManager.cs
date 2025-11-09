@@ -23,6 +23,7 @@ public class keyManager : MonoBehaviour
     [SerializeField] private float smoothPauseSpeed = 2f; // How fast it eases toward 0.4s
 
     private bool isHolding = false;
+    public bool isTutFinished = false;
     private bool vapePlaying = false;
     private Coroutine smoothPauseRoutine;
 
@@ -70,7 +71,7 @@ public class keyManager : MonoBehaviour
 
         if (Input.GetKey(keyToHold) && Mathf.Abs(Camera.main.transform.eulerAngles.y) < 1f)
             slider.value += fillSpeed * Time.deltaTime;
-        else
+        else if(isTutFinished)
             slider.value -= decaySpeed * Time.deltaTime;
 
         slider.value = Mathf.Clamp01(slider.value);

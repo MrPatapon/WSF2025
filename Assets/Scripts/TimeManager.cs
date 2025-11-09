@@ -7,28 +7,48 @@ public class TimeManager : MonoBehaviour
     [SerializeField] private TMP_Text timeText;
     [SerializeField] private int startHour = 7;
     [SerializeField] private int totalHours = 9;
-    [SerializeField] private Vector2 hourDurationRange = new Vector2(60f, 90f); // seconds
+    [SerializeField] private Vector2 hourDurationRange = new Vector2(60f, 90f);
 
     public int currentHour;
     private Coroutine timeRoutine;
-
     private DayManager dayManager;
+
+    private bool timePaused = true;
 
     private void Start()
     {
         dayManager = GetComponent<DayManager>();
-        StartNewDay();
+        currentHour = startHour;
+        UpdateTimeText();
     }
 
     public void StartNewDay()
     {
-        // stop previous coroutine if running
         if (timeRoutine != null)
             StopCoroutine(timeRoutine);
 
         currentHour = startHour;
         UpdateTimeText();
+        timePaused = true; // paused until tutorial ends
+    }
+
+    public void ResumeTime()
+    {
+        if (timeRoutine != null)
+            StopCoroutine(timeRoutine);
+
+        timePaused = false;
         timeRoutine = StartCoroutine(TimeRoutine());
+    }
+
+    public void PauseTime()
+    {
+        timePaused = true;
+        if (timeRoutine != null)
+        {
+            StopCoroutine(timeRoutine);
+            timeRoutine = null;
+        }
     }
 
     private IEnumerator TimeRoutine()
@@ -36,14 +56,23 @@ public class TimeManager : MonoBehaviour
         for (int i = 1; i < totalHours; i++)
         {
             float waitTime = Random.Range(hourDurationRange.x, hourDurationRange.y);
-            yield return new WaitForSeconds(waitTime);
+            float elapsed = 0f;
+
+            while (elapsed < waitTime)
+            {
+                if (!timePaused)
+                    elapsed += Time.deltaTime;
+                yield return null;
+            }
+
+            if (timePaused)
+                yield break;
 
             currentHour++;
             UpdateTimeText();
         }
 
-        // when the day ends
-        if (dayManager != null)
+        if (!timePaused && dayManager != null)
             dayManager.FinishDay();
     }
 

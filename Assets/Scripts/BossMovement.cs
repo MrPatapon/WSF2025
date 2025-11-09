@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
+
 public class BossMovement : MonoBehaviour
 {
     [Header("Boss Points")]
@@ -8,111 +8,97 @@ public class BossMovement : MonoBehaviour
 
     [Header("Movement Settings")]
     public float moveInterval;
-    public float moveSpeed;
+    public float moveSpeed; // can be used for rotation speed
     [Range(0f, 1f)] public float baseForwardChance;
     [Range(0f, 1f)] public float baseBackwardChance;
     public float secondTriggerBonus = 0.1f;
     public keyManager playerHoldRef;
     [SerializeField] RawImage FailStateVape;
+    [SerializeField] Camera MainCamera;
 
     private int currentIndex = 0;
-    private bool isMoving = false;
     private float currentForwardChance;
     private bool lastSecondTriggerState = false;
+    private float nextMoveTime = 0f;
+    public bool canMove;
+
     void Start()
     {
+        if (points.Length == 0) return;
         transform.position = points[0].position;
-        currentForwardChance = baseForwardChance; // ? THIS IS CRUCIAL
-        StartCoroutine(MovementLoop());
+        currentForwardChance = baseForwardChance;
     }
 
-    private void Update()
+    void Update()
     {
         if (playerHoldRef != null)
         {
             bool secondTriggerActive = playerHoldRef.SecondTriggerReached;
-            
+
             if (secondTriggerActive && !lastSecondTriggerState)
             {
                 currentForwardChance += secondTriggerBonus;
-                Debug.Log("Szansa na z³apanie wzros³a");
                 currentForwardChance = Mathf.Clamp01(currentForwardChance);
+                Debug.Log("Forward chance increased: " + currentForwardChance);
             }
 
             lastSecondTriggerState = secondTriggerActive;
         }
-        if (Input.GetKey(KeyCode.LeftShift)&& currentIndex == points.Length)
+
+        if (Time.time >= nextMoveTime)
+        {
+            if(canMove)
+                DecideNextMove();
+            nextMoveTime = Time.time + moveInterval;
+        }
+
+        if (Input.GetKey(KeyCode.LeftShift) && (currentIndex == points.Length || currentIndex == points.Length - 1))
         {
             FailStateVape.gameObject.SetActive(true);
-        }
-    }
-    public IEnumerator MovementLoop()
-    {
-        while (true)
-        {
-            Debug.Log("Waiting for next move...");
-            yield return new WaitForSeconds(moveInterval);
-            DecideNextMove();
         }
     }
 
     private void DecideNextMove()
     {
-        float moveForwardChance = currentForwardChance; // should be 1 for 100%
-        float moveBackwardChance = baseBackwardChance;  // e.g., 0
-        //float stayChance = 1f - moveForwardChance - moveBackwardChance;
+        float moveForwardChance = currentForwardChance;
+        float moveBackwardChance = baseBackwardChance;
 
         float rand = Random.value;
         int nextIndex = currentIndex;
 
+        if (MainCamera.transform.rotation.y > 1f)
+            return;
+
         if (rand < moveForwardChance)
         {
-            // Move forward
-            if (currentIndex < points.Length - 1)
-                nextIndex++;
-            else
-            {
-                // At the end, do nothing or handle separately
-                Debug.Log("At last point, cannot move forward");
-            }
+            // Move forward with loop
+            nextIndex = (currentIndex + 1) % points.Length;
         }
         else if (rand < moveForwardChance + moveBackwardChance)
         {
-            // Move backward
-            if (currentIndex > 0)
-                nextIndex--;
+            // Move backward with loop
+            nextIndex = (currentIndex - 1 + points.Length) % points.Length;
         }
         else
         {
-            // Stay
+            // Stay at current position
+            nextIndex = currentIndex;
         }
 
-        if (nextIndex != currentIndex && !isMoving)
+        if (nextIndex != currentIndex)
         {
-            Debug.Log($"Moving from {currentIndex} ? {nextIndex}");
-            StartCoroutine(MoveToPoint(points[nextIndex]));
+            Vector3 targetPos = points[nextIndex].position;
+            transform.position = targetPos;
+
+            // Rotate to face next point
+            Vector3 direction = (targetPos - transform.position).normalized;
+            if (direction != Vector3.zero)
+            {
+                transform.rotation = Quaternion.LookRotation(direction);
+            }
+
             currentIndex = nextIndex;
+            Debug.Log($"Teleported to point {currentIndex}");
         }
-    }
-
-    private IEnumerator MoveToPoint(Transform target)
-    {
-        isMoving = true;
-        Vector3 startPos = transform.position;
-        Vector3 endPos = target.position;
-        float t = 0f;
-        float distance = Vector3.Distance(startPos, endPos);
-
-        while (t < 1f)
-        {
-            t += Time.deltaTime * moveSpeed / distance;
-            transform.position = Vector3.Lerp(startPos, endPos, t);
-            yield return null;
-        }
-
-        transform.position = endPos;
-        isMoving = false;
-        Debug.Log("Arrived at point: " + currentIndex);
     }
 }
-
