@@ -57,6 +57,12 @@ public class keyManager : MonoBehaviour
         }
     }
 
+    public void onMistake()
+    {
+        Debug.Log("onMistake");
+        bossRelation -= 0.06f;
+    }
+
     public void UpdateHoldKeySlider(Slider slider, Image fillImage, KeyCode keyToHold,
         float fillSpeed, float decaySpeed, Color minColor, Color midColor, Color maxColor)
     {
