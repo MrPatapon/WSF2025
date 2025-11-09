@@ -8757,7 +8757,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 408080b1281dd9c4da0754c05cb5dc37, type: 3}
+  m_Texture: {fileID: 2800000, guid: a37496ace6507524781e3885b929e76b, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -12565,7 +12565,7 @@ MonoBehaviour:
   timeText: {fileID: 1200188177}
   startHour: 9
   totalHours: 9
-  hourDurationRange: {x: 15, y: 20}
+  hourDurationRange: {x: 3, y: 6}
   currentHour: 0
   officeTaskManager: {fileID: 1857775137}
 --- !u!4 &856571756
@@ -26842,7 +26842,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 0}
+  m_Texture: {fileID: 2800000, guid: bf46831f38e0ab84880d5b1acad4011d, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -28271,7 +28271,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 0}
+  m_Texture: {fileID: 2800000, guid: b7b8b2ef6d8e87b4a8114d9a70069499, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
