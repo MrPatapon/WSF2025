@@ -80,13 +80,16 @@ public class TimeManager : MonoBehaviour
             dayManager.FinishDay();
             officeTaskManager.EndDay();
         }
-            
     }
-
-    private void UpdateTimeText()
+        private void UpdateTimeText()
     {
         int displayHour = currentHour > 12 ? currentHour - 12 : currentHour;
         string period = currentHour >= 12 ? "PM" : "AM";
         timeText.text = $"{displayHour} {period}";
     }
-}
+        public void SetHour(int hour)
+        {
+            currentHour = hour;
+            UpdateTimeText();
+        }
+    }

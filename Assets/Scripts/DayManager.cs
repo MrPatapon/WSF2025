@@ -18,9 +18,10 @@ public class DayManager : MonoBehaviour
 
     private void Start()
     {
-        // Prevent game from starting before tutorial
+        // Pause everything at start; tutorial will start automatically
         Boss.canMove = false;
         TimeManager.PauseTime();
+        daytext.text = "DAY " + daycounter;
         tutorialManager.BeginTutorialDay(daycounter);
     }
 
@@ -34,18 +35,27 @@ public class DayManager : MonoBehaviour
         Boss.transform.position = Boss.points[0].position;
         KeyManager.Slider1.value = 1;
         KeyManager.decaySpeed1 += 0.015f;
-        StartCoroutine(TurnOffWinM());
 
         Boss.canMove = false;
         TimeManager.PauseTime();
-        daycounter += 1;
-        // Do not advance the day automatically; tutorial controls it
+
+        StartCoroutine(TurnOffWinM());
     }
 
     private IEnumerator TurnOffWinM()
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(4f);
         WinState.gameObject.SetActive(false);
+
+        // --- THIS IS THE CRUCIAL PART ---
+        // Increment the day BEFORE tutorial
+        daycounter++;
+        daytext.text = "DAY " + daycounter;
+
+        // Reset time to 9 AM
+        TimeManager.SetHour(9);
+
+        // Start tutorial for the new day
         tutorialManager.BeginTutorialDay(daycounter);
     }
 
@@ -54,6 +64,6 @@ public class DayManager : MonoBehaviour
         Boss.canMove = true;
         Boss.moveInterval = Mathf.Max(0.5f, Boss.moveInterval - 0.5f);
         KeyManager.Slider1.value = 1;
-        daytext.text = "DAY " + daycounter.ToString();
+        // Do NOT increment day here! It's handled in FinishDay
     }
 }
