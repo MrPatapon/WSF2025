@@ -38,6 +38,7 @@ public class DayManager : MonoBehaviour
 
         Boss.canMove = false;
         TimeManager.PauseTime();
+        daycounter += 1;
         // Do not advance the day automatically; tutorial controls it
     }
 
@@ -45,6 +46,7 @@ public class DayManager : MonoBehaviour
     {
         yield return new WaitForSeconds(4);
         WinState.gameObject.SetActive(false);
+        tutorialManager.BeginTutorialDay(daycounter);
     }
 
     public void BeginNewDay()

@@ -21,6 +21,7 @@ public class TimeManager : MonoBehaviour
         dayManager = GetComponent<DayManager>();
         currentHour = startHour;
         UpdateTimeText();
+        StartNewDay();
     }
 
     public void StartNewDay()
@@ -31,7 +32,7 @@ public class TimeManager : MonoBehaviour
         currentHour = startHour;
         UpdateTimeText();
         timePaused = true; // paused until tutorial ends
-        officeTaskManager.StartDay(dayManager.daycounter-1);
+        //officeTaskManager.StartDay(dayManager.daycounter-1);
     }
 
     public void ResumeTime()

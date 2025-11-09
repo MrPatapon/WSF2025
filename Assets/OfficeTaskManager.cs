@@ -37,6 +37,7 @@ public class OfficeTaskManager : MonoBehaviour
 
     public void StartDay(int day04)
     {
+        Debug.Log("STARTING >>>"+day04.ToString());
         day_id = day04;
         gtc = gto[day_id].gto[0];
 
@@ -60,9 +61,11 @@ public class OfficeTaskManager : MonoBehaviour
 
     public int EndDay()
     {
+        Debug.Log("DAY WIN >>>" + dayScore.ToString());
         int res = dayScore;
         qtm.IsOn = false;
         return dayScore;
+
     }
 
     public void finish(int score)

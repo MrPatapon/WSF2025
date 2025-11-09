@@ -95,6 +95,7 @@ public class TutorialManager : MonoBehaviour
         timeManager.ResumeTime();
         dayManager.Boss.canMove = true;
         keyManager.isTutFinished = true;
+        timeManager.officeTaskManager.StartDay(dayManager.daycounter - 1);
         dayManager.BeginNewDay(); // resume the same day
     }
 
