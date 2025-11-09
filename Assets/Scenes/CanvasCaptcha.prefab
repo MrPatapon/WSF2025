@@ -1044,6 +1044,10 @@ MonoBehaviour:
   free_letters: 
   qtm: {fileID: 0}
   otm: {fileID: 0}
+  MtaskTime: 10
+  taskTime: 10
+  timeSlider: {fileID: 5829439900667823639}
+  live: 0
 --- !u!1 &7302365267846731866
 GameObject:
   m_ObjectHideFlags: 0
