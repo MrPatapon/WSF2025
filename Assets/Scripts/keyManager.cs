@@ -14,6 +14,7 @@ public class keyManager : MonoBehaviour
     public GameObject Slider1P;
     public Image fillImage1;
     public RawImage FailStateNoStamina;
+    public BossMovement Boss;
 
     [Header("Vape References")]
     [SerializeField] private Animation vapeAnimation;     // Legacy Animation component
@@ -104,11 +105,13 @@ public class keyManager : MonoBehaviour
 
             if (!firstTriggerDone && holdTime >= nextTriggerTime)
                 firstTriggerDone = true;
+                AudioManager.instance.PlayOneShot(FmodEvents.instance.SmallCough, transform.position);
 
             if (firstTriggerDone && !secondTriggerDone && holdTime >= nextTriggerTime + 0.5f)
             {
                 secondTriggerDone = true;
                 Debug.Log("????? Cough Trigger!");
+                AudioManager.instance.PlayOneShot(FmodEvents.instance.LargeCough, transform.position);
             }
         }
         else
