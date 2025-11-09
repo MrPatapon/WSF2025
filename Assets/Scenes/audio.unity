@@ -1,0 +1,357 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!29 &1
+OcclusionCullingSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_OcclusionBakeSettings:
+    smallestOccluder: 5
+    smallestHole: 0.25
+    backfaceThreshold: 100
+  m_SceneGUID: 00000000000000000000000000000000
+  m_OcclusionCullingData: {fileID: 0}
+--- !u!104 &2
+RenderSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 10
+  m_Fog: 0
+  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_FogMode: 3
+  m_FogDensity: 0.01
+  m_LinearFogStart: 0
+  m_LinearFogEnd: 300
+  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
+  m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
+  m_AmbientIntensity: 1
+  m_AmbientMode: 0
+  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_HaloStrength: 0.5
+  m_FlareStrength: 1
+  m_FlareFadeSpeed: 3
+  m_HaloTexture: {fileID: 0}
+  m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
+  m_DefaultReflectionMode: 0
+  m_DefaultReflectionResolution: 128
+  m_ReflectionBounces: 1
+  m_ReflectionIntensity: 1
+  m_CustomReflection: {fileID: 0}
+  m_Sun: {fileID: 0}
+  m_UseRadianceAmbientProbe: 0
+--- !u!157 &3
+LightmapSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 13
+  m_BakeOnSceneLoad: 0
+  m_GISettings:
+    serializedVersion: 2
+    m_BounceScale: 1
+    m_IndirectOutputScale: 1
+    m_AlbedoBoost: 1
+    m_EnvironmentLightingMode: 0
+    m_EnableBakedLightmaps: 1
+    m_EnableRealtimeLightmaps: 0
+  m_LightmapEditorSettings:
+    serializedVersion: 12
+    m_Resolution: 2
+    m_BakeResolution: 40
+    m_AtlasSize: 1024
+    m_AO: 0
+    m_AOMaxDistance: 1
+    m_CompAOExponent: 1
+    m_CompAOExponentDirect: 0
+    m_ExtractAmbientOcclusion: 0
+    m_Padding: 2
+    m_LightmapParameters: {fileID: 0}
+    m_LightmapsBakeMode: 1
+    m_TextureCompression: 1
+    m_ReflectionCompression: 2
+    m_MixedBakeMode: 2
+    m_BakeBackend: 1
+    m_PVRSampling: 1
+    m_PVRDirectSampleCount: 32
+    m_PVRSampleCount: 512
+    m_PVRBounces: 2
+    m_PVREnvironmentSampleCount: 256
+    m_PVREnvironmentReferencePointCount: 2048
+    m_PVRFilteringMode: 1
+    m_PVRDenoiserTypeDirect: 1
+    m_PVRDenoiserTypeIndirect: 1
+    m_PVRDenoiserTypeAO: 1
+    m_PVRFilterTypeDirect: 0
+    m_PVRFilterTypeIndirect: 0
+    m_PVRFilterTypeAO: 0
+    m_PVREnvironmentMIS: 1
+    m_PVRCulling: 1
+    m_PVRFilteringGaussRadiusDirect: 1
+    m_PVRFilteringGaussRadiusIndirect: 1
+    m_PVRFilteringGaussRadiusAO: 1
+    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
+    m_PVRFilteringAtrousPositionSigmaIndirect: 2
+    m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_ExportTrainingData: 0
+    m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
+  m_LightingDataAsset: {fileID: 20201, guid: 0000000000000000f000000000000000, type: 0}
+  m_LightingSettings: {fileID: 0}
+--- !u!196 &4
+NavMeshSettings:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_BuildSettings:
+    serializedVersion: 3
+    agentTypeID: 0
+    agentRadius: 0.5
+    agentHeight: 2
+    agentSlope: 45
+    agentClimb: 0.4
+    ledgeDropHeight: 0
+    maxJumpAcrossDistance: 0
+    minRegionArea: 2
+    manualCellSize: 0
+    cellSize: 0.16666667
+    manualTileSize: 0
+    tileSize: 256
+    buildHeightMesh: 0
+    maxJobWorkers: 0
+    preserveTilesOutsideBounds: 0
+    debug:
+      m_Flags: 0
+  m_NavMeshData: {fileID: 0}
+--- !u!1 &368168894
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 368168895}
+  - component: {fileID: 368168896}
+  m_Layer: 0
+  m_Name: FmodEvents
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &368168895
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368168894}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 967289125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &368168896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368168894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33e6d08df4499d0449d6c2b252d25e5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Ambience:
+    Guid:
+      Data1: 824335387
+      Data2: 1111097490
+      Data3: -1472442995
+      Data4: 1347590572
+    Path: event:/AMBIENCES/amb_ingame_office
+  Music:
+    Guid:
+      Data1: -342011150
+      Data2: 1157542592
+      Data3: 855133845
+      Data4: 1532949422
+    Path: event:/MUSIC/mainmenu
+  <Inhale>k__BackingField:
+    Guid:
+      Data1: 1349444428
+      Data2: 1176090248
+      Data3: 27685275
+      Data4: -526465730
+    Path: event:/SFX/SoundCues/Vape/sfx_vape_inhale
+  <Exhale>k__BackingField:
+    Guid:
+      Data1: 1355340046
+      Data2: 1197206424
+      Data3: 975556006
+      Data4: -230803177
+    Path: event:/SFX/SoundCues/Vape/sfx_vape_exhale
+  <SmallCough>k__BackingField:
+    Guid:
+      Data1: -1937696042
+      Data2: 1198176324
+      Data3: 19531666
+      Data4: 223110
+    Path: event:/SFX/player/sfx_cough_small
+  <MediumCough>k__BackingField:
+    Guid:
+      Data1: 54281338
+      Data2: 1211044253
+      Data3: -448629314
+      Data4: -455074880
+    Path: event:/SFX/player/sfx_cough_medium
+  <LargeCough>k__BackingField:
+    Guid:
+      Data1: 911752741
+      Data2: 1215894555
+      Data3: -872790854
+      Data4: -1276711898
+    Path: event:/SFX/player/sfx_cough_large
+  <KeyboardTyping>k__BackingField:
+    Guid:
+      Data1: 462383076
+      Data2: 1199514670
+      Data3: -2021371479
+      Data4: 1003263406
+    Path: event:/SFX/SoundCues/mini-games/sfx_keyboard_typing
+  <KeyboardButton>k__BackingField:
+    Guid:
+      Data1: 992887710
+      Data2: 1333267766
+      Data3: 1806326431
+      Data4: -1376389145
+    Path: event:/SFX/SoundCues/mini-games/sfx_keyboard_button
+  <SceneSound>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <BossAlert>k__BackingField:
+    Guid:
+      Data1: 810215672
+      Data2: 1303584260
+      Data3: 1605635771
+      Data4: 1368002297
+    Path: event:/SFX/SoundCues/Boss/sfx_boss_alert
+  <BossTriggered>k__BackingField:
+    Guid:
+      Data1: 1841976323
+      Data2: 1213952749
+      Data3: -376229760
+      Data4: -496049074
+    Path: event:/SFX/SoundCues/Boss/sfx_boss_noticed
+  <BossRun>k__BackingField:
+    Guid:
+      Data1: 1874112318
+      Data2: 1231681213
+      Data3: 1304205224
+      Data4: 1901229179
+    Path: event:/SFX/SoundCues/Boss/sfx_boss_run
+  <Success>k__BackingField:
+    Guid:
+      Data1: 1812031950
+      Data2: 1149743570
+      Data3: 1710643353
+      Data4: -810384993
+    Path: event:/SFX/SoundCues/sfx_win
+  <Fail>k__BackingField:
+    Guid:
+      Data1: -1625981741
+      Data2: 1144824780
+      Data3: 1230539904
+      Data4: 17454165
+    Path: event:/SFX/SoundCues/sfx_fail
+  <PlayerScream>k__BackingField:
+    Guid:
+      Data1: 1599378453
+      Data2: 1212535820
+      Data3: 666585732
+      Data4: -943957974
+    Path: event:/SFX/player/sfx_player_scream
+  <EndDayPhone>k__BackingField:
+    Guid:
+      Data1: 1077664648
+      Data2: 1184056491
+      Data3: 1915768215
+      Data4: -1498386754
+    Path: event:/SFX/Sfx_phone_ring
+  <CityAmbientBreak>k__BackingField:
+    Guid:
+      Data1: -1073315502
+      Data2: 1260322458
+      Data3: 201525149
+      Data4: 1520910431
+    Path: event:/SFX/Sfx_transition_city
+  <Click>k__BackingField:
+    Guid:
+      Data1: -1650644372
+      Data2: 1240507706
+      Data3: 923082941
+      Data4: -967419548
+    Path: event:/UI/sfx_ui_click
+  <Hover>k__BackingField:
+    Guid:
+      Data1: 1708131110
+      Data2: 1114878882
+      Data3: 662586510
+      Data4: -1659024238
+    Path: event:/UI/sfx_ui_hover
+--- !u!1 &967289124
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 967289125}
+  - component: {fileID: 967289126}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &967289125
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967289124}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 368168895}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &967289126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967289124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fbc82c5bed53824ca6136a08fc2f738, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  masterVolume: 0.8
+  footstepsVolume: 0.5
+--- !u!1660057539 &9223372036854775807
+SceneRoots:
+  m_ObjectHideFlags: 0
+  m_Roots:
+  - {fileID: 967289125}
