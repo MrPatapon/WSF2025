@@ -19,6 +19,7 @@ public class TutorialManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private DayManager dayManager;
     [SerializeField] private TimeManager timeManager;
+    [SerializeField] private keyManager keyManager;
 
     private List<GameObject> messageBubbles = new List<GameObject>();
     private int currentStep = 0; // index of the first bubble in the current pair
@@ -38,6 +39,7 @@ public class TutorialManager : MonoBehaviour
         // Pause game logic
         timeManager.PauseTime();
         dayManager.Boss.canMove = false;
+        keyManager.isTutFinished = false;
 
         messageBubbles.Clear();
 
@@ -92,6 +94,7 @@ public class TutorialManager : MonoBehaviour
         // Resume game logic
         timeManager.ResumeTime();
         dayManager.Boss.canMove = true;
+        keyManager.isTutFinished = true;
         dayManager.BeginNewDay(); // resume the same day
     }
 

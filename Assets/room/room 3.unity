@@ -5043,6 +5043,7 @@ MonoBehaviour:
   day5Bubbles: []
   dayManager: {fileID: 856571757}
   timeManager: {fileID: 856571755}
+  keyManager: {fileID: 834332494}
 --- !u!1 &388287841
 GameObject:
   m_ObjectHideFlags: 0
