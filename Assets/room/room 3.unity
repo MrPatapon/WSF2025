@@ -1807,7 +1807,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &164190350
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6711,7 +6711,6 @@ MonoBehaviour:
   m_text: 'May the odds be in your favor,
 
 
-
     Xoxo
 
 '
@@ -10905,7 +10904,6 @@ MonoBehaviour:
   m_text: 'Dear Newbie,
 
 
-
     Seems like management wants to talk to you, they will
     call.
 
@@ -12069,6 +12067,7 @@ MonoBehaviour:
   Slider1P: {fileID: 794232588}
   fillImage1: {fileID: 1726961806}
   FailStateNoStamina: {fileID: 618623887}
+  Boss: {fileID: 0}
   vapeAnimation: {fileID: 1335289838}
   vapeClipName: Vape
   smokeEffect: {fileID: 1176769094}
