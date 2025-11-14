@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
+using FMOD.Studio;
 using System;
 
 public class FmodEvents : MonoBehaviour
@@ -34,7 +35,7 @@ public class FmodEvents : MonoBehaviour
     [field: Header("Boss")]
     [field: SerializeField] public EventReference BossAlert { get; private set; }
     [field: SerializeField] public EventReference BossTriggered { get; private set; }
-    [field: SerializeField] public EventReference BossRun { get; private set; }
+    [field: SerializeField] public EventReference BossRun { get;set; }
 
 
     [field: Header("Sound Cues")]
@@ -60,6 +61,7 @@ public class FmodEvents : MonoBehaviour
             Debug.LogError("Found more than one FMOD Events instance in the scene.");
         }
         instance = this;
+        //BossRun.setVolume()
     }
 }
 

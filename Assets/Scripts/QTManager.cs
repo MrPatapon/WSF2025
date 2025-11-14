@@ -43,11 +43,13 @@ public class QTManager : MonoBehaviour
         onPressed.AddListener(() =>
         {
             Debug.Log("PRESSED");
+            AudioManager.instance.PlayOneShot(FmodEvents.instance.KeyboardButton, new Vector3(0f, 0f, 0f));
             updateLetter();
         });
         onFinish.AddListener(() =>
         {
             Debug.Log("FIN");
+            AudioManager.instance.PlayOneShot(FmodEvents.instance.KeyboardTyping, new Vector3(0f, 0f, 0f));
             updateLetter();
         });
         onFail.AddListener(() =>

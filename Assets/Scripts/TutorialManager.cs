@@ -21,6 +21,9 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private TimeManager timeManager;
     [SerializeField] private keyManager keyManager;
 
+    [Header("Tutorial Buttons (Images)")]
+    [SerializeField] private List<GameObject> tutorialButtons;
+
     private List<GameObject> messageBubbles = new List<GameObject>();
     private int currentStep = 0; // index of the first bubble in the current pair
     private int currentDay = 1;
@@ -72,15 +75,21 @@ public class TutorialManager : MonoBehaviour
     private void ShowNextPair()
     {
         // Hide all first
-        foreach (var bubble in messageBubbles)
-            bubble.SetActive(false);
+        foreach (var b in messageBubbles)
+            if (b) b.SetActive(false);
 
-        // Show current pair
+        // Show bubble 1
         if (currentStep < messageBubbles.Count)
-            messageBubbles[currentStep].SetActive(true);
+            if (messageBubbles[currentStep])
+                messageBubbles[currentStep].SetActive(true);
 
+        // Show bubble 2
         if (currentStep + 1 < messageBubbles.Count)
-            messageBubbles[currentStep + 1].SetActive(true);
+            if (messageBubbles[currentStep + 1])
+                messageBubbles[currentStep + 1].SetActive(true);
+
+        // Activate tutorial buttons because bubbles are visible
+        SetTutorialButtonsActive(true);
     }
 
     public void GetNextMessage()
@@ -107,6 +116,7 @@ public class TutorialManager : MonoBehaviour
         keyManager.isTutFinished = true;
         timeManager.officeTaskManager.StartDay(dayManager.daycounter - 1);
         dayManager.BeginNewDay(); // resume the same day
+        SetTutorialButtonsActive(false);
     }
 
     private void Update()
@@ -119,5 +129,11 @@ public class TutorialManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.X))
                 EndTutorial();
         }
+    }
+
+    private void SetTutorialButtonsActive(bool active)
+    {
+        foreach (var btn in tutorialButtons)
+            if (btn) btn.SetActive(active);
     }
 }

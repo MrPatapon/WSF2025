@@ -15,6 +15,7 @@ public class keyManager : MonoBehaviour
     public Image fillImage1;
     public RawImage FailStateNoStamina;
     public BossMovement Boss;
+    public TimeManager timeManager;
 
     [Header("Vape References")]
     [SerializeField] private Animation vapeAnimation;     // Legacy Animation component
@@ -47,7 +48,7 @@ public class keyManager : MonoBehaviour
     {
         bossRelation = Mathf.Clamp01(bossRelation + Time.deltaTime * 0.005f);
         Slider1.maxValue = bossRelation;
-        Slider1P.GetComponent<RectTransform>().localScale = new Vector3(bossRelation, Slider1.GetComponent<RectTransform>().localScale.y, 1.0f);
+        Slider1P.GetComponent<RectTransform>().localScale = new Vector3(bossRelation, 1.7f, 1.0f);
 
         UpdateHoldKeySlider(Slider1, fillImage1, Key1, fillSpeed1, decaySpeed1, Color.red + Color.gray, orange + Color.gray, Color.green + Color.gray);
         HandleHoldTimer(Key1);
@@ -57,6 +58,7 @@ public class keyManager : MonoBehaviour
         {
             FailStateNoStamina.gameObject.SetActive(true);
             AudioManager.instance.PlayOneShot(FmodEvents.instance.BossTriggered, transform.position);
+            timeManager.PauseTime();
         }
            
 
@@ -70,7 +72,7 @@ public class keyManager : MonoBehaviour
 
     public void onMistake()
     {
-        AudioManager.instance.PlayOneShot(FmodEvents.instance.Fail, transform.position);
+        //AudioManager.instance.PlayOneShot(FmodEvents.instance.Fail, transform.position);
         AudioManager.instance.PlayOneShot(FmodEvents.instance.BossAlert, transform.position);
         Debug.Log("onMistake");
         bossRelation -= 0.06f;
@@ -222,6 +224,8 @@ public class keyManager : MonoBehaviour
         isAudioPlayed1 = false;
         isAudioPlayed2 = false;
         isAudioPlayed3 = false;
+
+        StartCoroutine(SmokeBurst());
     }
 
     private IEnumerator SmokeBurst()

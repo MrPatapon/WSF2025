@@ -21,6 +21,7 @@ public class BossMovement : MonoBehaviour
     private bool lastSecondTriggerState = false;
     private float nextMoveTime = 0f;
     public bool canMove;
+    public TimeManager timeManager;
 
     void Start()
     {
@@ -47,15 +48,16 @@ public class BossMovement : MonoBehaviour
 
         if (Time.time >= nextMoveTime)
         {
-            if(canMove)
+            if(canMove && Mathf.Abs(Camera.main.transform.eulerAngles.y) < 1f)
                 DecideNextMove();
             nextMoveTime = Time.time + moveInterval;
         }
 
-        if (Input.GetKey(KeyCode.LeftShift) && (currentIndex == points.Length || currentIndex == points.Length - 1))
+        if (Input.GetKey(KeyCode.LeftShift) && (currentIndex == points.Length || currentIndex == points.Length + 1))
         {
             FailStateVape.gameObject.SetActive(true);
-            AudioManager.instance.PlayOneShot(FmodEvents.instance.BossTriggered, transform.position);
+            AudioManager.instance.PlayOneShot(FmodEvents.instance.Fail, transform.position);
+            timeManager.PauseTime();
         }
     }
 
@@ -65,10 +67,7 @@ public class BossMovement : MonoBehaviour
         float moveBackwardChance = baseBackwardChance;
 
         float rand = Random.value;
-        int nextIndex = currentIndex;
-
-        if (MainCamera.transform.rotation.y > 1f)
-            return;
+        int nextIndex = currentIndex;        
 
         if (rand < moveForwardChance)
         {
@@ -90,7 +89,7 @@ public class BossMovement : MonoBehaviour
         {
             Vector3 targetPos = points[nextIndex].position;
             transform.position = targetPos;
-            AudioManager.instance.PlayOneShot(FmodEvents.instance.BossRun,transform.position);
+            AudioManager.instance.PlayOneShotWithVolume(FmodEvents.instance.BossRun,transform.position,4f);
 
             // Rotate to face next point
             Vector3 direction = (targetPos - transform.position).normalized;

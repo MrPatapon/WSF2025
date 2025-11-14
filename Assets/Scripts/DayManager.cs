@@ -35,16 +35,19 @@ public class DayManager : MonoBehaviour
         }
             
         else
+        {
             PAPA.gameObject.SetActive(true);
 
-        Boss.transform.position = Boss.points[0].position;
-        KeyManager.Slider1.value = 1;
-        KeyManager.decaySpeed1 += 0.015f;
+            Boss.transform.position = Boss.points[0].position;
+            KeyManager.Slider1.value = 1;
+            KeyManager.decaySpeed1 += 0.015f;
 
-        Boss.canMove = false;
-        TimeManager.PauseTime();
+            Boss.canMove = false;
+            TimeManager.PauseTime();
+            StartCoroutine(TurnOffWinM());
 
-        StartCoroutine(TurnOffWinM());
+        }
+            
     }
 
     private IEnumerator TurnOffWinM()

@@ -102,6 +102,22 @@ public class AudioManager : MonoBehaviour
     {
         RuntimeManager.PlayOneShot(sound, worldPos);
     }
+    public void PlayOneShotWithVolume(EventReference sound, Vector3 position, float volume)
+    {
+        // Create instance manually (instead of PlayOneShot)
+        EventInstance instance = RuntimeManager.CreateInstance(sound);
+
+        // Position
+        instance.set3DAttributes(RuntimeUtils.To3DAttributes(position));
+
+        // Clamp volume 0..1 for safety
+        volume = Mathf.Clamp01(volume);
+        instance.setVolume(volume);
+
+        // Play and release
+        instance.start();
+        instance.release(); // safe cleanup
+    }
 
     public void Stopplay(EventReference sound)
     {
