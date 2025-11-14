@@ -231,10 +231,12 @@ public class keyManager : MonoBehaviour
     private IEnumerator SmokeBurst()
     {
 
+        smokeEffect.transform.position = new Vector3(0f, 1f, -8.4f);
         smokeEffect.GetComponent<ParticleSystem>().startLifetime = 0.4f;
         AudioManager.instance.PlayOneShot(FmodEvents.instance.Exhale, transform.position);
         yield return new WaitForSeconds(1f);
         smokeEffect.GetComponent<ParticleSystem>().startLifetime = 0;
+        smokeEffect.transform.position = new Vector3(0f, 50f, -8.4f);
     }
 
     public bool SecondTriggerReached => secondTriggerDone;

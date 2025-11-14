@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class AudioManager : MonoBehaviour
     private List<EventInstance> eventInstances;
     private List<StudioEventEmitter> eventEmitters;
 
-    private EventInstance ambienceEventInstance;
+    public EventInstance ambienceEventInstance;
     public EventInstance musicEventInstance;
 
     public EventInstance isttrack;
@@ -41,27 +42,37 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-       
-
-        if (instance != null)
+        if (instance != null && instance != this)
         {
-            Debug.LogError("Found more than one Audio Manager in the scene. " + instance + " will be replaced by " + this);
+            // Stop and destroy the duplicate
+            instance.StopAllMusic();
+            Destroy(this.gameObject);
+            return;
         }
+
         instance = this;
+        DontDestroyOnLoad(this.gameObject);
 
         eventInstances = new List<EventInstance>();
         eventEmitters = new List<StudioEventEmitter>();
-
         masterBus = RuntimeManager.GetBus("bus:/");
-
     }
 
     private void Start()
     {
-        InitializeAmbience(FmodEvents.instance.Ambience);
-        //InitializeMusic(FmodEvents.instance.Music);
-        InitializeAmbience(FmodEvents.instance.Ambience);
-        //InitializeMusic(FmodEvents.instance.Music);
+        InitializeAmbience(FmodEvents.instance.Ambience);      
+        
+
+        if (SceneManager.GetActiveScene().name == "MainMenu")
+        {
+            InitializeMusic(FmodEvents.instance.Music);          
+        }
+        else
+        {
+            
+        }
+
+
 
 
         musicInstances.Add(musicMysteriousEventInstance);
@@ -73,6 +84,22 @@ public class AudioManager : MonoBehaviour
         musicInstances.Add(musicFarewellEventInstance);
         // InicjalizacjadlaJu(FmodEvents.instance./*pierwszy track*/);
 
+    }
+
+    public void StopAllMusic()
+    {
+        // Stop any currently playing music
+        if (musicEventInstance.isValid())
+        {
+            musicEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            musicEventInstance.release();
+        }
+
+        if (ambienceEventInstance.isValid())
+        {
+            ambienceEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            ambienceEventInstance.release();
+        }
     }
     public void UpdateActiveTrack()
     {

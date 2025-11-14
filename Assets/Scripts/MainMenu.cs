@@ -27,6 +27,7 @@ public class MainMenu : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene("room 3");
+        SceneManager.UnloadSceneAsync("MainMenu");
     }
 
     public void ExitGame()

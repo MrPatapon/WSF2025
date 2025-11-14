@@ -89,6 +89,7 @@ public class TutorialManager : MonoBehaviour
                 messageBubbles[currentStep + 1].SetActive(true);
 
         // Activate tutorial buttons because bubbles are visible
+        if(currentDay == 1)
         SetTutorialButtonsActive(true);
     }
 
@@ -117,6 +118,8 @@ public class TutorialManager : MonoBehaviour
         timeManager.officeTaskManager.StartDay(dayManager.daycounter - 1);
         dayManager.BeginNewDay(); // resume the same day
         SetTutorialButtonsActive(false);
+        AudioManager.instance.musicEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        AudioManager.instance.musicEventInstance.release();
     }
 
     private void Update()
