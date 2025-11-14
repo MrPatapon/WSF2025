@@ -53,7 +53,7 @@ public class BossMovement : MonoBehaviour
             nextMoveTime = Time.time + moveInterval;
         }
 
-        if (Input.GetKey(KeyCode.LeftShift) && (currentIndex == points.Length || currentIndex == points.Length + 1))
+        if (Input.GetKey(KeyCode.LeftShift) && (transform.position.x>=-3 && transform.position.x <= -3))
         {
             FailStateVape.gameObject.SetActive(true);
             AudioManager.instance.PlayOneShot(FmodEvents.instance.Fail, transform.position);

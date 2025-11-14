@@ -74,6 +74,7 @@ public class TutorialManager : MonoBehaviour
 
     private void ShowNextPair()
     {
+        AudioManager.instance.PlayOneShot(FmodEvents.instance.Click, new Vector3(0, 0, 0));
         // Hide all first
         foreach (var b in messageBubbles)
             if (b) b.SetActive(false);
