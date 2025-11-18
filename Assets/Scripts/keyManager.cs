@@ -152,16 +152,21 @@ public class keyManager : MonoBehaviour
 
         if (Mathf.Abs(Camera.main.transform.eulerAngles.y) > 1f)
             return;
-        if ((Boss.currentIndex == 9f || Boss.currentIndex == 10f)) ;
-        {
-            FailStateVape.gameObject.SetActive(true);
-            AudioManager.instance.PlayOneShot(FmodEvents.instance.Fail, transform.position);
-            timeManager.PauseTime();
-        }
+        
         AnimationState state = vapeAnimation[vapeClipName];
 
         if (Input.GetKeyDown(key))
         {
+            if ((Boss.currentIndex == 9f || Boss.currentIndex == 10f)) 
+            {
+                FailStateVape.gameObject.SetActive(true);
+                AudioManager.instance.PlayOneShot(FmodEvents.instance.Fail, transform.position);
+                timeManager.PauseTime();
+            }
+
+
+
+
             vapeAnimation.Play(vapeClipName);
             if(!isAudioPlayed3)
             {
