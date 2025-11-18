@@ -30,6 +30,7 @@ public class DayManager : MonoBehaviour
         if (daycounter < 5)
         {
             WinState.gameObject.SetActive(true);
+            StartCoroutine(TurnOffWinM());
             AudioManager.instance.PlayOneShot(FmodEvents.instance.Success, transform.position);
             AudioManager.instance.PlayOneShot(FmodEvents.instance.EndDayPhone, transform.position);
         }

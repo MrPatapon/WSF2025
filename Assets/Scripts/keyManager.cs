@@ -16,6 +16,7 @@ public class keyManager : MonoBehaviour
     public RawImage FailStateNoStamina;
     public BossMovement Boss;
     public TimeManager timeManager;
+    [SerializeField] RawImage FailStateVape;
 
     [Header("Vape References")]
     [SerializeField] private Animation vapeAnimation;     // Legacy Animation component
@@ -151,7 +152,12 @@ public class keyManager : MonoBehaviour
 
         if (Mathf.Abs(Camera.main.transform.eulerAngles.y) > 1f)
             return;
-
+        if ((Boss.currentIndex == 9f || Boss.currentIndex == 10f)) ;
+        {
+            FailStateVape.gameObject.SetActive(true);
+            AudioManager.instance.PlayOneShot(FmodEvents.instance.Fail, transform.position);
+            timeManager.PauseTime();
+        }
         AnimationState state = vapeAnimation[vapeClipName];
 
         if (Input.GetKeyDown(key))

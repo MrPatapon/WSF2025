@@ -16,7 +16,7 @@ public class BossMovement : MonoBehaviour
     [SerializeField] RawImage FailStateVape;
     [SerializeField] Camera MainCamera;
 
-    private int currentIndex = 0;
+    public int currentIndex = 0;
     private float currentForwardChance;
     private bool lastSecondTriggerState = false;
     private float nextMoveTime = 0f;
@@ -48,17 +48,10 @@ public class BossMovement : MonoBehaviour
 
         if (Time.time >= nextMoveTime)
         {
-            if(canMove && Mathf.Abs(Camera.main.transform.eulerAngles.y) < 1f)
+            if (canMove && Mathf.Abs(Camera.main.transform.eulerAngles.y) < 1f)
                 DecideNextMove();
             nextMoveTime = Time.time + moveInterval;
-        }
-
-        if (Input.GetKey(KeyCode.LeftShift) && (transform.position.x>=-3 && transform.position.x <= -3))
-        {
-            FailStateVape.gameObject.SetActive(true);
-            AudioManager.instance.PlayOneShot(FmodEvents.instance.Fail, transform.position);
-            timeManager.PauseTime();
-        }
+        }        
     }
 
     private void DecideNextMove()
