@@ -27,6 +27,7 @@ public class OfficeTaskManager : MonoBehaviour
     public int dayScore=0;
     public QTManager qtm;
     public keyManager keyManager;
+    public AppAngryBoss aab;
 
     public GameType gtc;
     void Start()
@@ -43,7 +44,12 @@ public class OfficeTaskManager : MonoBehaviour
     }
     public void onSlow()
     {
-        keyManager.bossRelation *= 0.5f;
+        keyManager.bossRelation *= 0.5f; 
+        excel.gameObject.active = false;
+        captcha.gameObject.active = false;
+
+        aab.gameObject.active = true;
+
         Debug.Log("YOU!!!!!!!!!!!!!!!!");
     }
     public void StartDay(int day04)

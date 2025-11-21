@@ -34,7 +34,7 @@ public class FictionalMouse : MonoBehaviour
     {
         //img.gameObject.active = on;
         float isf = 1.0f / canvas.scaleFactor;
-        img.GetComponent<RectTransform>().anchoredPosition = (sp - fp * 0.5f)*mscale;
-        
+        img.GetComponent<RectTransform>().anchoredPosition = (sp - fp * 0.5f) * mscale;
+        //img.GetComponent<RectTransform>().
     }
 }
